@@ -9,7 +9,7 @@ const renderList=()=>{
   if(state){
 return [
   <>
-        <li> <Link to="profile">Profile </Link></li>,
+        <li> <Link to="profile">Profile</Link></li>,
         <li> <Link to="create">Upload</Link></li>,
         <li key="4"><Link to="/myfollowingpost">following</Link></li>,
        
@@ -31,8 +31,8 @@ return [
   else{
  return [
 
-        <li> <Link to="/signin">Login </Link></li>,
-        <li> <Link to="signup">Signup </Link></li>
+        <li> <Link to="/signin">Login</Link></li>,
+        <li> <Link to="signup">Signup</Link></li>
       
 
  ]
