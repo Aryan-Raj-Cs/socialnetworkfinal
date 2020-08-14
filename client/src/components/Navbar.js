@@ -33,6 +33,7 @@ return [
 
         <li> <Link to="/signin">Loogin </Link></li>,
         <li> <Link to="signup">Signup </Link></li>
+      
 
  ]
   }
@@ -40,7 +41,7 @@ return [
   return (
      <nav>
     <div className="nav-wrapper white">
-       <Link to={state?"/":'/signin'} className="brand-logo left">MyNetwork</Link>
+    <Link to={state?"/":'/signin'} className="brand-logo left">MN</Link>
       <ul id="nav-mobile" className="right">
        {renderList()}
       </ul>
