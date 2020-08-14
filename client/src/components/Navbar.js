@@ -10,7 +10,7 @@ const renderList=()=>{
 return [
   <>
         <li> <Link to="profile">Profile </Link></li>,
-        <li> <Link to="create">Create </Link></li>,
+        <li> <Link to="create">Upload</Link></li>,
         <li key="4"><Link to="/myfollowingpost">following</Link></li>,
        
         <button className="btn waves-effect waves-light #e53935 red darken-1" onClick={()=>{localStorage.clear()
