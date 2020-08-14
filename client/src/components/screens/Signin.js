@@ -39,14 +39,16 @@ const Signin = () => {
 
             console.log(data);
             if(data.error){
-                M.toast({html: 'User Already Exit!',classes:"#d32f2f red darken-2"})
+                M.toast({html: 'Password and Email are wrong!',classes:"#d32f2f red darken-2"})
             }
             else{
-
+            if(data){
                 localStorage.setItem("jwt_key",data.jwt_key);
                 localStorage.setItem("user",JSON.stringify(data.user));
                 dispatch({type:"USER",payload:data.user})
                 M.toast({html: 'signed Succesfully',classes:"#00c853 green accent-4"})
+
+            }
 
             history.push('/')
             console.log(data);
@@ -64,7 +66,7 @@ const Signin = () => {
 
         <div className="mycard">
             <div className="card auth-card">
-                <h2>MyNetwork</h2>
+                <h2>Instagram</h2>
                 <input type="text" placeholder="email"
                  value={email}
                  onChange={(e)=>{setEmail(e.target.value)}}

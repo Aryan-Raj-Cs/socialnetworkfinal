@@ -7,6 +7,10 @@ const Home = () => {
 
    const [data, setData] = useState([])
    const { state, dispatch } = useContext(userContext)
+   const [comnt,setComment]=useState("");
+   const clear=()=>{
+      setComment("");
+   }
    useEffect(() => {
       fetch('/allpost', {
          headers: {
@@ -83,6 +87,7 @@ const Home = () => {
    }
 
    const makeComment = (text, postId) => {
+      setComment("");
       fetch('/comment', {
          method: "put",
          headers: {
@@ -183,7 +188,7 @@ const Home = () => {
                            e.preventDefault()
                            makeComment(e.target[0].value, item._id)
                         }}>
-                           <input type="text" placeholder="add a comment" />
+                           <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e)=>{setComment(e.target.value)}} value={comnt}/>
                         </form>
                      </div>
                   </div>

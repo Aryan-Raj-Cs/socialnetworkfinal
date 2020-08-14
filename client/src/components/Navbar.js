@@ -31,7 +31,7 @@ return [
   else{
  return [
 
-        <li> <Link to="/signin">Loogin </Link></li>,
+        <li> <Link to="/signin">Login </Link></li>,
         <li> <Link to="signup">Signup </Link></li>
       
 
