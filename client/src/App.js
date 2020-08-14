@@ -2,6 +2,7 @@ import React, { useEffect, createContext, useReducer, useContext } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar'
+
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 
 import Home from './components/screens/Home';
@@ -13,6 +14,7 @@ import CreatePost from './components/screens/CreatePost';
 import SubscribedUserPosts from './components/screens/SubscribesUserPosts'
 
 import { reducer, initialState } from './reducers/UserReducers'
+import Navbar1 from './components/Navbar1';
 export const userContext = createContext();
 const Routing = () => {
 
@@ -77,6 +79,7 @@ function App() {
     <userContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
         <Navbar />
+        
         <Routing />
 
       </BrowserRouter>

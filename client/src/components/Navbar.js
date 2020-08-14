@@ -11,7 +11,7 @@ return [
   <>
         <li> <Link to="profile">Profile </Link></li>,
         <li> <Link to="create">Create </Link></li>,
-        <li key="4"><Link to="/myfollowingpost">My following Posts</Link></li>,
+        <li key="4"><Link to="/myfollowingpost">following</Link></li>,
        
         <button className="btn waves-effect waves-light #e53935 red darken-1" onClick={()=>{localStorage.clear()
         dispatch({type:"CLEAR"})
@@ -31,7 +31,7 @@ return [
   else{
  return [
 
-        <li> <Link to="/login">Loogin </Link></li>,
+        <li> <Link to="/signin">Loogin </Link></li>,
         <li> <Link to="signup">Signup </Link></li>
 
  ]
