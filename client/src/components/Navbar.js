@@ -9,7 +9,7 @@ const renderList=()=>{
   if(state){
 return [
   <>
-        <li> <Link to="profile"  style={{color:"red",padding:"0px"}}>Profile</Link></li>,
+        <li> <Link to="profile"  >Profile</Link></li>,
         <li  > <Link to="create"  >Upload</Link></li>,
         <li key="4"><Link to="/myfollowingpost" >following</Link></li>,
         <li style={{color:"red",padding:"0px"}}  
