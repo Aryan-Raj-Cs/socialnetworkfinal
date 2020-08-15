@@ -5,17 +5,32 @@ const crypto = require('crypto')
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const nodemailer=require('nodemailer')
-const {JWT_SECRET,EMAIL}=process.env
+const {JWT_SECRET}=process.env
 const requireLogin=require('../middlewere/requireLogin.js');
 
+const sendgridTransport = require('nodemailer-sendgrid-transport')
+const {SENDGRID_API,EMAIL} =process.env
+//
 
-let transport = nodemailer.createTransport({ 
-    service: 'gmail', 
-    auth: { 
-        user: 'aryanrajresonance@gmail.com', 
-        pass: 'Aryan@Asha123'
-    } 
-}); 
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth:{
+        api_key:SENDGRID_API
+    }
+      //api_key:SENDGRID_API
+
+
+}))
+
+
+
+// let transport = nodemailer.createTransport({ 
+//     service: 'gmail', 
+//     auth: { 
+//         user: 'aryanrajresonance@gmail.com', 
+//         pass: 'Aryan@Asha123'
+//     } 
+// }); 
 
 
 rout.post('/signup',(req,res)=>{
@@ -95,15 +110,18 @@ rout.post('/reset-password',(req,res)=>{
             }
             user.resetToken = token
             user.expireToken = Date.now() + 3600000
+            console.log(user.email)
             user.save().then((result)=>{
-                transport.sendMail({
+                transporter.sendMail({
                     to:user.email,
                     from:"aryanrajresonance@gmail.com",
                     subject:"password reset",
                     html:`
                     <p>You requested for password reset</p>
-                    <h5>click in this <a href=${EMAIL}/reset/${token}>link-for-password-reset</a> to reset password</h5>
+                    <h5>click in this <a href="${EMAIL}/reset/${token}">link</a> to reset password</h5>
                     `
+                }).catch(error=>{
+                    console.log(error)
                 })
                 res.json({message:"check your email"})
             })

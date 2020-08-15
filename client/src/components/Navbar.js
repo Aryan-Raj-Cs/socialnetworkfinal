@@ -77,6 +77,7 @@ const fetchUsers = (query)=>{
      <nav>
     <div className="nav-wrapper white">
     {/* <Link to={state?"/":'/signin'} className="brand-logo left ">M</Link>  */}
+    <Link to={state?"/":"/signin"} className="brand-logo left">MN</Link>
       <ul id="nav-mobile" className="right">
        {renderList()}
       </ul>
