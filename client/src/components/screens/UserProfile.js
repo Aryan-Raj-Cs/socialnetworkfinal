@@ -100,24 +100,24 @@ import {useParams} from 'react-router-dom'
             borderBottom:"solid 1px grey"
             }}>
             <div>
-              <img  style={{width:'160px',height:'160px',borderRadius:"80px"}}
+              <img  style={{width:'100px',height:'100px',borderRadius:"80px"}}
               src={userProfile.user.pic}
               />
             </div>
             
             <div>
-            <h4>{userProfile.user.name}</h4>
-            <h6>{userProfile.user.email}</h6> 
+            <h6>{userProfile.user.name}</h6>
+            <strong>{userProfile.user.email}</strong> 
             <div style={{
             display:'flex',
             justifyContent:"space-around",
-            width:"108%",
+            width:"100%",
            
            
             }} >
-                       <h6>{userProfile.posts.length} posts</h6>
-                       <h6>{userProfile.user.followers?userProfile.user.followers.length:"0 "} followers</h6>
-                       <h6>{userProfile.user.followers?userProfile.user.following.length:"0 "} following</h6>
+                       <strong>{userProfile.posts.length} posts&nbsp;</strong>
+                       <strong>{userProfile.user.followers?userProfile.user.followers.length:"0 "} followers&nbsp;</strong>
+                       <strong>{userProfile.user.followers?userProfile.user.following.length:"0 "} following</strong>
             </div>
             {showfollow?
                    <button style={{

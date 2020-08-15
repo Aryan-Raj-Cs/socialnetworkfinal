@@ -72,7 +72,7 @@ import {userContext} from '../../App'
                borderBottom:"solid 1px grey"
                }}>
                <div>
-                 <img  style={{width:'100px',height:'110px',borderRadius:"80px"}}
+                 <img  style={{width:'100px',height:'100px',borderRadius:"80px"}}
                  src={state?state.pic:"loading"}
                  />
                </div>
@@ -84,7 +84,7 @@ import {userContext} from '../../App'
                <div style={{
                display:'flex',
                justifyContent:"",
-               width:"108%",
+               width:"100%",
               
               
                }} >
@@ -93,9 +93,9 @@ import {userContext} from '../../App'
                 {/* <h6>{state.followers.length} Followers</h6>
                 <h6>{state.following.length} Following</h6> */}
                   
-                       <h6>{data.length} Posts</h6>
-                       <h6>{state?state.followers.length:"0"} followers </h6>
-                       <h6>{state?state.following.length:"0"} following </h6>
+                       <strong>{data.length} Posts &nbsp;</strong>
+                       <strong>{state?state.followers.length:"0"} followers&nbsp; </strong>
+                       <strong>{state?state.following.length:"0"} following </strong>
                     
                    {/* <h6>{data[0].postedBy.followers.length} Followers</h6>
                    <h6>{data[0].postedBy.following.length} Following</h6>  */}
