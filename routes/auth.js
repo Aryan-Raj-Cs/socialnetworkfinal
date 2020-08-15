@@ -53,7 +53,7 @@ rout.post('/signin',(req,res)=>{
 
   User.findOne({email:email}).then((userresult)=>{
     if(!userresult){
-        res.status(404).json({"message":"enter valid details"});
+        res.status(404).json({"error":"enter valid details"});
     }
 
     bcrypt.compare(password,userresult.password).then((doMatch)=>{
@@ -66,7 +66,7 @@ rout.post('/signin',(req,res)=>{
             res.json({jwt_key,user:{_id,name,email,followers,following,pic}})
         }
         else{
-            res.status(400).json({"error":"not found"});
+            res.status(405).json({"error":"not found"});
         }
     })
   })

@@ -12,6 +12,7 @@ import Signin from './components/screens/Signin';
 import SignUp from './components/screens/SignUp'
 import CreatePost from './components/screens/CreatePost';
 import SubscribedUserPosts from './components/screens/SubscribesUserPosts'
+import M from 'materialize-css';
 
 import { reducer, initialState } from './reducers/UserReducers'
 import Navbar1 from './components/Navbar1';
@@ -21,6 +22,13 @@ const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(userContext);
   useEffect(() => {
+    //console.log(localStorage.getItem('user')=="undefined")
+    if(localStorage.getItem('user')=="undefined"){
+      console.log(localStorage.getItem('user'))
+      localStorage.clear('user')
+      localStorage.clear('jwt_key')
+      M.toast({html: 'Password and Email are wrong!',classes:"#d32f2f red darken-2"})
+     }
     const user = JSON.parse(localStorage.getItem('user'));
     // console.log((user));
     if (user) {

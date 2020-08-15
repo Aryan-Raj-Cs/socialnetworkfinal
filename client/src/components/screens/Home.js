@@ -87,6 +87,8 @@ const Home = () => {
    }
 
    const makeComment = (text, postId) => {
+    
+      if(comnt.length>0){
       setComment("");
       fetch('/comment', {
          method: "put",
@@ -113,6 +115,7 @@ const Home = () => {
             console.log(err)
          })
    }
+}
 
 
 
@@ -174,9 +177,11 @@ const Home = () => {
                               onClick={() => { likePost(item._id) }}
                            >thumb_up</i>
                         }
-                        <h6>{item.likes.length} likes</h6>
-                        <p>{item.title}</p>
-                        <p>{item.body}</p>
+                        <h6><strong>{item.likes.length} likes</strong></h6>
+                        <p><strong>{item.comments.length} comments</strong></p>
+                        <p><strong>{item.title}</strong></p>
+                        <p><strong>{item.body}</strong></p>
+                       
                         {
                            item.comments.map(record => {
                               return (

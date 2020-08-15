@@ -7,6 +7,8 @@ rout.get('/allpost',requireLogin,(req,res)=>{
     Post.find().populate("postedBy","_id name").populate("comments.postedBy","_id name").
     then((result)=>{
         res.json({posts:result})
+    }).catch(error=>{
+        res.json({"error":"invalid"})
     })
 })
 
