@@ -72,18 +72,18 @@ import {userContext} from '../../App'
                borderBottom:"solid 1px grey"
                }}>
                <div>
-                 <img  style={{width:'160px',height:'160px',borderRadius:"80px"}}
+                 <img  style={{width:'100px',height:'110px',borderRadius:"80px"}}
                  src={state?state.pic:"loading"}
                  />
                </div>
                
                <div>
-               <h4>{state?state.name:"loading"}</h4>
-               <h4>{state?state.email:"loading"}</h4>
+               <h6>{state?state.name:"loading"}</h6>
+               <strong>{state?state.email:"loading"}</strong>
              
                <div style={{
                display:'flex',
-               justifyContent:"space-around",
+               justifyContent:"",
                width:"108%",
               
               
@@ -93,9 +93,9 @@ import {userContext} from '../../App'
                 {/* <h6>{state.followers.length} Followers</h6>
                 <h6>{state.following.length} Following</h6> */}
                   
-                       <h6>{data.length} posts</h6>
-                       <h6>{state?state.followers.length:"0"} followers</h6>
-                       <h6>{state?state.following.length:"0"} following</h6>
+                       <h6>{data.length} Posts</h6>
+                       <h6>{state?state.followers.length:"0"} followers </h6>
+                       <h6>{state?state.following.length:"0"} following </h6>
                     
                    {/* <h6>{data[0].postedBy.followers.length} Followers</h6>
                    <h6>{data[0].postedBy.following.length} Following</h6>  */}

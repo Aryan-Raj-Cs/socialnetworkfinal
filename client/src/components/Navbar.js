@@ -12,15 +12,12 @@ return [
         <li> <Link to="profile">Profile</Link></li>,
         <li> <Link to="create">Upload</Link></li>,
         <li key="4"><Link to="/myfollowingpost">following</Link></li>,
-       
-        <button className="btn waves-effect waves-light #e53935 red darken-1" onClick={()=>{localStorage.clear()
+        <li style={{color:"red"}}   onClick={()=>{localStorage.clear()
         dispatch({type:"CLEAR"})
         history.push('/signin')
-        }} >
-          
-          Logout
-    
-        </button>
+        }} > <Link to="profile" >Logout</Link></li>,
+       
+       
 
         </>
 
