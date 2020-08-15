@@ -82,7 +82,8 @@ const Signin = () => {
                 <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={postData} >Signin
     
                  </button>
-                 <h5><Link to='/signup'>Don't Have Account</Link> </h5>
+                 <h6 ><Link to='/signup' >Don't Have Account ?</Link> </h6>
+                 <h6 ><Link to='/reset' >Forgot-Password ?</Link> </h6>
             </div>
         </div>
     )

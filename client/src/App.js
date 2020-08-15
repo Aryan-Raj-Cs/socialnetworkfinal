@@ -11,7 +11,9 @@ import UserProfile from './components/screens/UserProfile';
 import Signin from './components/screens/Signin';
 import SignUp from './components/screens/SignUp'
 import CreatePost from './components/screens/CreatePost';
+import Reset from './components/screens/Reset';
 import SubscribedUserPosts from './components/screens/SubscribesUserPosts'
+import NewPassword from './components/screens/Newpassword'
 import M from 'materialize-css';
 
 import { reducer, initialState } from './reducers/UserReducers'
@@ -37,6 +39,7 @@ const Routing = () => {
 
     }
     else {
+      if(!history.location.pathname.startsWith('/reset'))
       history.push('/signin');
     }
   }, [])
@@ -72,6 +75,13 @@ const Routing = () => {
 
       <Route path="/myfollowingpost">
         <SubscribedUserPosts />
+      </Route>
+
+      <Route exact path="/reset">
+        <Reset />
+      </Route>
+      <Route  path="/reset/:token">
+        <NewPassword />
       </Route>
 
     </Switch>
