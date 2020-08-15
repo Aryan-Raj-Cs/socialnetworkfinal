@@ -102,7 +102,7 @@ rout.post('/reset-password',(req,res)=>{
                     subject:"password reset",
                     html:`
                     <p>You requested for password reset</p>
-                    <h5>click in this <a href=http://localhost:3000/reset/${token}>link-for-password-reset</a> to reset password</h5>
+                    <h5>click in this <a href=${EMAIL}/reset/${token}>link-for-password-reset</a> to reset password</h5>
                     `
                 })
                 res.json({message:"check your email"})
