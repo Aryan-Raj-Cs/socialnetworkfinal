@@ -70,7 +70,7 @@ const Signin = () => {
 
         <div className="mycard">
             <div className="card auth-card">
-                <h2>Instagram</h2>
+                <h2>Network</h2>
                 <input type="text" placeholder="email"
                  value={email}
                  onChange={(e)=>{setEmail(e.target.value)}}

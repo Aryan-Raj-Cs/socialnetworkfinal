@@ -76,7 +76,7 @@ const postData = ()=>{
 
         <div className="mycard">
             <div className="card auth-card">
-                <h2>Instagram</h2>
+                <h2>Network</h2>
                 <input type="text" placeholder="name"
                 value={name}
                  onChange={(e)=>{setName(e.target.value)}}
@@ -105,7 +105,7 @@ const postData = ()=>{
                 <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={postData} >SignUp
     
                  </button>
-                 <h5><Link to='/signin'>Already Have Acoount</Link> </h5>
+                 <h6><Link to='/signin'>already have acoount ?</Link> </h6>
                  
             </div>
         </div>

@@ -19,11 +19,11 @@ function Navbar() {
     if(state){
   return [
     <>  
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
-          <li> <Link to="profile"  >Profile</Link></li>,
-          <li  > <Link to="create"  >Upload</Link></li>,
+          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
+          <li> <Link to="profile"  >Profile</Link></li>
+          <li  > <Link to="create"  >Upload</Link></li>
           {/* <li  > <a href="create"  >Upload</a></li>, */}
-          <li key="4"><Link to="/myfollowingpost" >following</Link></li>,
+          <li key="4"><Link to="/myfollowingpost" >following</Link></li>
           <li style={{color:"red",padding:"0px"}}  
            > 
           
@@ -37,7 +37,7 @@ function Navbar() {
           </button>
           
           
-          </li>,
+          </li>
          
          
   
