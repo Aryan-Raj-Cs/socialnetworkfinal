@@ -23,7 +23,7 @@ function Navbar() {
   
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
           <li style={{color:"red",padding:"0px",marginLeft:"30px",marginTop:"15px"}} >
-              <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+            <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
               src={state.pic}
               />
               </li>
@@ -140,7 +140,7 @@ function Navbar() {
      <nav>
  
     <div class="nav-wrapper white">
-    <Link to={state?"/":"/signin"} className="brand-logo ">Network</Link>
+    <Link to={state?"/":"/signin"} className="brand-logo "><span style={{color:"green"}}>Home</span></Link>
    
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
