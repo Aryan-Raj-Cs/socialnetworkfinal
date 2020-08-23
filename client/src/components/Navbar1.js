@@ -22,7 +22,7 @@ function Navbar() {
     
   
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
-          <li style={{color:"red",padding:"0px",marginLeft:"30px",marginTop:"15px"}} >
+          <li style={{color:"red",padding:"0px",marginLeft:"15px",marginTop:"15px"}} >
             <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
               src={state.pic}
               />
