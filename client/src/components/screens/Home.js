@@ -36,23 +36,19 @@ const Home = () => {
             postId: id
          })
       }).then(res => res.json())
-         .then(result => {
-            console.log(result)
-            const newData = data.map(item => {
-               if (item._id == result._id) {
-                  //console.log(result._id)
-                  return result
-               } else {
-                  return item
-               }
-            })
-            console.log(data)
-            // window. location. reload(false);
-            setData(newData)
-            //  console.log(newData)
-         }).catch(err => {
-            console.log(err)
+      .then(result => {
+         console.log(result)
+         const newData = data.map(item => {
+            if (item._id == result._id) {
+               return result
+            } else {
+               return item;
+            }
          })
+         setData(newData)
+      }).catch(err => {
+         console.log(err)
+      })
    }
 
 
@@ -67,23 +63,19 @@ const Home = () => {
             postId: id
          })
       }).then(res => res.json())
-         .then(result => {
-            console.log(result)
-            const newData = data.map(item => {
-               if (item._id == result._id) {
-                  //console.log(result._id)
-                  return result
-               } else {
-                  return item
-               }
-            })
-            console.log(data)
-            // window. location. reload(false);
-            setData(newData)
-            // console.log(newData)
-         }).catch(err => {
-            console.log(err)
+      .then(result => {
+         console.log(result)
+         const newData = data.map(item => {
+            if (item._id == result._id) {
+               return result
+            } else {
+               return item;
+            }
          })
+         setData(newData)
+      }).catch(err => {
+         console.log(err)
+      })
    }
 
    const makeComment = (text, postId) => {
