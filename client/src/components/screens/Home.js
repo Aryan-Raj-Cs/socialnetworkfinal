@@ -90,6 +90,7 @@ const Home = () => {
     
       if(comnt.length>0){
       setComment("");
+      setAllcomments(true)
       fetch('/comment', {
          method: "put",
          headers: {
@@ -135,7 +136,11 @@ const Home = () => {
          })
    }
 const allcomment=()=>{
+   if(allcomments==false)
   setAllcomments(true)
+ else{
+   setAllcomments(false)  
+ }
 }
 
    return (
@@ -151,14 +156,14 @@ const allcomment=()=>{
 
                   <div className="card home-card" key={item._id}>
 
-                     <h5 style={{ padding: "5px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}>{item.postedBy.name}</Link> {item.postedBy._id == state._id
+                     <h6 style={{ padding: "5px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}><strong style={{color:"blue"}}>{"@"+item.postedBy.name}</strong></Link> {item.postedBy._id == state._id
                         && <i className="material-icons" style={{
                            float: "right"
                         }}
                            onClick={() => deletePost(item._id)}
                         >delete</i>
 
-                     }</h5>
+                     }</h6>
                      <div className="card-image">
                         <img src={item.photo}
 
@@ -190,24 +195,24 @@ const allcomment=()=>{
                         }}>
                            <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e)=>{setComment(e.target.value)}} value={comnt}/>
                         </form>
-                       
-                      /*  {
+{/*                        
+                        {
                            item.comments.map((record,index) => {
                              
                               return (
                                  <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name}</span> {record.text}</h6>
                               )
                            })
-                        }*/
+                        } */}
 						
 						
 						 {
                            item.comments.map((record,index) => {
                               if(allcomments==false){
-                             if(index<5)
-                              return (
-                                 <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
-                              )
+                           //   if(index<5)
+                           //    return (
+                           //       <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
+                           //    )
                               }
 
                               else{
