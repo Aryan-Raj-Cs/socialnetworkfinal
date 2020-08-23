@@ -147,7 +147,11 @@ const allcomment=()=>{
 
 
                   <div className="card home-card" key={item._id}>
-
+            <div style={{color:"red",padding:"20px",marginTop:"20px"}} >
+              <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+              src={item.postedBy.pic}
+              />
+             
                      <h6 style={{ padding: "5px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}><strong style={{color:"blue"}}>{"@"+item.postedBy.name}</strong></Link> {item.postedBy._id == state._id
                         && <i className="material-icons" style={{
                            float: "right"
@@ -156,6 +160,7 @@ const allcomment=()=>{
                         >delete</i>
 
                      }</h6>
+                      </div>
                      <div className="card-image">
                         <img src={item.photo}
 

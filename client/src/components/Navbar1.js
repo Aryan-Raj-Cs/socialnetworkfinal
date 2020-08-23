@@ -19,8 +19,16 @@ function Navbar() {
     if(state){
   return [
     <>  
+    
+  
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
+          <li style={{color:"red",padding:"0px",marginLeft:"30px",marginTop:"15px"}} >
+              <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+              src={state.pic}
+              />
+              </li>
           <li> <Link to="profile"  ><strong style={{color:"blue"}} >{state.name}</strong></Link></li>
+        
           <li  > <Link to="create"  >Upload</Link></li>
           {/* <li  > <a href="create"  >Upload</a></li>, */}
           <li key="4"><Link to="/myfollowingpost" >following</Link></li>
@@ -60,15 +68,24 @@ function Navbar() {
 
 
   const renderList1=()=>{
+    console.log(state)
     if(state){
   return [
     <>  
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",marginLeft:"30px"}}>search</i></li>
+          <li style={{color:"red",padding:"0px",marginLeft:"30px"}} >
+              <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+              src={state.pic}
+              />
+              </li>
           <li  > <a href="profile"  ><strong style={{color:"blue"}} >{state.name}</strong></a></li>
           <li  > <a href="create"  >Upload</a></li>
           <li key="4"><a href="/myfollowingpost" >following</a></li>
-          <li style={{color:"red",padding:"0px"}}  
+          <li style={{color:"red",padding:"0px"}} 
+           
            > 
+          
+            
           
           <button className="btn waves-effect  waves-light #e53935 red darken-1" onClick={()=>{localStorage.clear()
           dispatch({type:"CLEAR"})
@@ -124,6 +141,7 @@ function Navbar() {
  
     <div class="nav-wrapper white">
     <Link to={state?"/":"/signin"} className="brand-logo ">Network</Link>
+   
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {/* <li><a href="sass.html">Sass</a></li>

@@ -4,7 +4,7 @@ const Post=require('../models/post');
 const requireLogin=require('../middlewere/requireLogin.js');
 
 rout.get('/allpost',requireLogin,(req,res)=>{
-    Post.find().populate("postedBy","_id name").populate("comments.postedBy","_id name").
+    Post.find().populate("postedBy","_id name pic").populate("comments.postedBy","_id name").
     then((result)=>{
         res.json({posts:result})
     }).catch(error=>{
@@ -56,8 +56,8 @@ rout.get('/mypost',requireLogin,(req,res)=>{
         $push:{likes:req.user._id}
     },{
         new:true
-    }).populate("comments.postedBy","_id name")
-    .populate("postedBy","_id name")
+    }).populate("comments.postedBy","_id name pic")
+    .populate("postedBy","_id name pic")
     .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
@@ -72,7 +72,7 @@ rout.put('/unlike',requireLogin,(req,res)=>{
     },{
         new:true
     }).populate("comments.postedBy","_id name")
-    .populate("postedBy","_id name")
+    .populate("postedBy","_id name pic")
     .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
