@@ -4,7 +4,7 @@ import { userContext } from '../../App';
 const Home = () => {
 
 
-
+   const [allcomments,setAllcomments]=useState(false);
    const [data, setData] = useState([])
    const { state, dispatch } = useContext(userContext)
    const [comnt,setComment]=useState("");
@@ -134,7 +134,9 @@ const Home = () => {
             setData(newData)
          })
    }
-
+const allcomment=()=>{
+  setAllcomments(true)
+}
 
    return (
       <div className="home">
@@ -181,7 +183,7 @@ const Home = () => {
                        
                         <p><strong>{item.title}</strong></p>
                         <p><strong>{item.body}</strong></p>
-						 <p><strong>{item.comments.length} comments</strong></p>
+						  <p style={{cursor:"pointer",color:"blue"}}  onClick={allcomment}><strong> View all comments {item.comments.length}</strong></p>
 						<form onSubmit={(e) => {
                            e.preventDefault()
                            makeComment(e.target[0].value, item._id)
@@ -189,12 +191,31 @@ const Home = () => {
                            <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e)=>{setComment(e.target.value)}} value={comnt}/>
                         </form>
                        
-                        {
+                      /*  {
                            item.comments.map((record,index) => {
                              
                               return (
                                  <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name}</span> {record.text}</h6>
                               )
+                           })
+                        }*/
+						
+						
+						 {
+                           item.comments.map((record,index) => {
+                              if(allcomments==false){
+                             if(index<5)
+                              return (
+                                 <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
+                              )
+                              }
+
+                              else{
+                                 
+                                 return (
+                                    <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
+                                 )
+                              }
                            })
                         }
                        
