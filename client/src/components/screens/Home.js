@@ -178,9 +178,16 @@ const Home = () => {
                            >thumb_up</i>
                         }
                         <h6><strong>{item.likes.length} likes</strong></h6>
-                        <p><strong>{item.comments.length} comments</strong></p>
+                       
                         <p><strong>{item.title}</strong></p>
                         <p><strong>{item.body}</strong></p>
+						 <p><strong>{item.comments.length} comments</strong></p>
+						<form onSubmit={(e) => {
+                           e.preventDefault()
+                           makeComment(e.target[0].value, item._id)
+                        }}>
+                           <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e)=>{setComment(e.target.value)}} value={comnt}/>
+                        </form>
                        
                         {
                            item.comments.map((record,index) => {
@@ -191,12 +198,7 @@ const Home = () => {
                            })
                         }
                        
-                        <form onSubmit={(e) => {
-                           e.preventDefault()
-                           makeComment(e.target[0].value, item._id)
-                        }}>
-                           <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e)=>{setComment(e.target.value)}} value={comnt}/>
-                        </form>
+                        
                      </div>
                   </div>
 
