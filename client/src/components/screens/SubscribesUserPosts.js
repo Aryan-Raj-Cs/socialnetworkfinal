@@ -130,9 +130,9 @@ const Home  = ()=>{
                             <i className="material-icons" style={{color:"red"}}>favorite</i>
                             {item.likes.includes(state._id)
                             ? 
-                             <i className="material-icons"
+                             <i className="material-icons" style={{ color: "blue" }}
                                     onClick={()=>{unlikePost(item._id)}}
-                              >thumb_down</i>
+                              >thumb_up</i>
                             : 
                             <i className="material-icons"
                             onClick={()=>{likePost(item._id)}}
