@@ -115,7 +115,7 @@ import {useParams} from 'react-router-dom'
                         <div style={{border:""}}><i class="material-icons" style={{ color: "blue", marginTop: "10px" }}>check_circle  </i>
                             </div>
                     </div>
-            <strong>{userProfile.user.email}</strong> 
+            {/* <strong>{userProfile.user.email}</strong>  */}
             <div style={{
             display:'flex',
             justifyContent:"space-around",
@@ -130,52 +130,81 @@ import {useParams} from 'react-router-dom'
             {showfollow?
                    <button style={{
                        margin:"10px"
-                   }} className="btn waves-effect waves-light #64b5f6 blue darken-1"
+                   }} className="btn  blue darken-1 "
+                   style={{width:"100px",height:"35px",fontSize:"13px",color:"white"}}
                     onClick={()=>followUser()}
                     >
-                        Follow
+                     Follow   
                     </button>
                     : 
-                    <button
-                    style={{
+                    <button style={{
                         margin:"10px"
-                    }}
-                    className="btn waves-effect waves-light #64b5f6 blue darken-1"
-                    onClick={()=>unfollowUser()}
-                    >
-                        UnFollow
-                    </button>
+                    }} className="btn  blue darken-1 "
+                    style={{width:"100px",height:"35px",fontSize:"13px",color:"white"}}
+                     onClick={()=>unfollowUser()}
+                     >
+                      Unfollow   
+                     </button>
                     }
             </div>
         </div>
     <div className="gallery">
        {
          userProfile.posts.map((val)=>{
-            return (
-                <>
+            // return (
+            //     <>
 
-                <div style={{border:"",width:"100%",height:"50%"}}>
-                <span> <i className="material-icons" style={{ color: "red",fontSize:"25px" }} >favorite_border</i>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                <i className="material-icons" style={{ color: "blue" ,fontSize:"25px"}} >forum</i>
+            //     <div style={{border:"",width:"100%",height:"50%"}}>
+            //     <span> <i className="material-icons" style={{ color: "red",fontSize:"25px" }} >favorite_border</i>
+            //     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            //     <i className="material-icons" style={{ color: "blue" ,fontSize:"25px"}} >forum</i>
                
-                  </span> 
+            //       </span> 
                  
                    
 
-              <div style={{marginLeft:"8px"}}>
-                 <strong>{val.likes.length} </strong>
-                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <strong>{val.comments.length}  </strong>
-                </div>
+            //   <div style={{marginLeft:"8px"}}>
+            //      <strong>{val.likes.length} </strong>
+            //      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            //      <strong>{val.comments.length}  </strong>
+            //     </div>
                
 
+            //         <img className="iteam"
+            //             src={val.photo}
+
+            //         />
+            //        </div>
+
+            //       </> 
+            //     )
+
+            return (
+                <>
+
+               
+               
+                    <div  className="iteam1">
+         
+              
+            <span> <i className="material-icons" style={{ color: "red",fontSize:"15px" }} >favorite_border</i>
+                &nbsp; <strong>{val.likes.length} </strong> &nbsp;
+                <i className="material-icons" style={{ color: "" ,fontSize:"13px"}} >forum</i>
+                &nbsp;<strong>{val.comments.length}  </strong>
+                
+                  </span> 
+                
+                  {/* <div style={{marginLeft:"5px"}}> */}
+                
+                 
+               
+                {/* </div> */}
                     <img className="iteam"
                         src={val.photo}
 
                     />
-                   </div>
-
+                    </div>
+                
                   </> 
                 )
           })   

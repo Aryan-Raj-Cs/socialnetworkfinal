@@ -124,7 +124,7 @@ const Profile = () => {
 
 
 
-                    <strong>{state ? state.email : "loading"}</strong>
+                    {/* <strong>{state ? state.email : "loading"}</strong> */}
 
                     <div style={{
                         display: 'flex',
@@ -154,34 +154,35 @@ const Profile = () => {
                         return (
                         <>
 
-                        <div style={{border:"",width:"100%",height:"50%"}}>
-                        <span> <i className="material-icons" style={{ color: "red",fontSize:"25px" }} >favorite_border</i>
-                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                        <i className="material-icons" style={{ color: "blue" ,fontSize:"25px"}} >forum</i>
+                       
+                       
+                            <div  className="iteam1">
+                 
+                      
+                    <span> <i className="material-icons" style={{ color: "red",fontSize:"15px" }} >favorite_border</i>
+                        &nbsp; <strong>{val.likes.length} </strong> &nbsp;
+                        <i className="material-icons" style={{ color: "" ,fontSize:"13px"}} >forum</i>
+                        &nbsp;<strong>{val.comments.length}  </strong>
                         <i className="material-icons" style={{
                            float: "right",
-                           color:"red"
-                           ,fontSize:"25px"
+                           color:""
+                           ,fontSize:"15px"
                         }}
                            onClick={() => deletePost(val._id)}
                         >delete</i>
                           </span> 
+                        
+                          {/* <div style={{marginLeft:"5px"}}> */}
+                        
                          
-                           
-
-                      <div style={{marginLeft:"8px"}}>
-                         <strong>{val.likes.length} </strong>
-                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                         <strong>{val.comments.length}  </strong>
-                        </div>
                        
-
+                        {/* </div> */}
                             <img className="iteam"
                                 src={val.photo}
 
                             />
-                           </div>
-
+                            </div>
+                        
                           </> 
                         )
                     })

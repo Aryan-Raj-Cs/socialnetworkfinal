@@ -30,7 +30,7 @@ function Navbar() {
          
           {/* <li> <i class="material-icons"  style={{color:"blue"}}>check_circle  </i></li> */}
          
-          <li> <Link to="/"  ><i class="material-icons">home</i></Link></li>
+          <li><Link to="/"  ><i class="material-icons">home</i></Link></li>
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
           <li> <Link to="create"  ><i class="material-icons">local_see</i></Link></li>
           <li> <Link to="trending"  ><i class="material-icons"> album</i></Link></li>
@@ -86,15 +86,15 @@ function Navbar() {
               />
               </a>
         
-          <li> <a href="/"  ><i class="material-icons">home</i></a></li>
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",marginLeft:"30px"}}>search</i></li>
-          <li> <a href="create"  ><i class="material-icons">local_see</i></a></li>
-          <li> <a href="trending"  ><i class="material-icons"> album</i></a></li>
-          <li> <a href="myfollowingpost"  ><i class="material-icons">rss_feed</i></a></li>
+          <li> <a href="/"  ><i class="material-icons">home</i>Home</a></li>
+          <li key="1"><a ><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i>Search</a></li>
+          <li> <a href="create"  ><i class="material-icons">local_see</i>Upload</a></li>
+          <li> <a href="trending"  ><i class="material-icons"> album</i>Trending</a></li>
+          <li> <a href="myfollowingpost"  ><i class="material-icons">rss_feed</i>Following</a></li>
           <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
           dispatch({type:"CLEAR"})
           history.push('/signin')
-          }} >settings_power</i></Link></li>
+          }} >settings_power</i>Logout</Link></li>
           {/* <li style={{color:"red",padding:"0px"}} 
            
            > 
@@ -180,7 +180,7 @@ function Navbar() {
                  return <a href={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
                    M.Modal.getInstance(searchModal1.current).close()
                    setSearch('')
-                 }}><li className="collection-item">{item.email}</li></a> 
+                 }}><li className="collection-item">{item.name}</li></a> 
                })}
                
               </ul>
