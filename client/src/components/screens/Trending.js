@@ -11,17 +11,18 @@ const Home = () => {
    const clear = () => {
       setComment("");
    }
-   useEffect(()=>{
-    fetch('/getsubpost',{
-        headers:{
-         "authorization":"Bearer "+localStorage.getItem("jwt_key")
-        }
-    }).then(res=>res.json())
-    .then(result=>{
-        console.log(result)
-        setData(result.posts)
-    })
- },[])
+   useEffect(() => {
+      fetch('/allpost', {
+         headers: {
+            "authorization": "Bearer " + localStorage.getItem("jwt_key")
+         }
+      }).then(res => res.json())
+         .then(result => {
+            console.log(result.posts)
+            setData(result.posts)
+         })
+   }, [])
+
 
 
    const likePost = (id) => {
@@ -134,10 +135,18 @@ const Home = () => {
       }
    }
 
+   const tsort=(v)=>{
+    v.sort((a,b)=>{
+        if(a.likes.length>b.likes.length)
+          return -1;
+      })
+      
+   }
+
    return (
       <div className="home">
 
-
+          {tsort(data)}
          {
 
             data.map(item => {

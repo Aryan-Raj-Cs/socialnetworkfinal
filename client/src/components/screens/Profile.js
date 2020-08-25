@@ -1,130 +1,196 @@
-import React,{useEffect,useState,useContext} from 'react'
-import {userContext} from '../../App'
+import React, { useEffect, useState, useContext } from 'react'
+import { userContext } from '../../App'
 
- const Profile=()=>{
-   const [data,setData]=useState([]);
-   const {state,dispatch} = useContext(userContext)
-   const [image,setImage] = useState("")
-   useEffect(()=>{
-    
-      fetch('/mypost',{
-          headers:{
-              "authorization":"Bearer "+localStorage.getItem("jwt_key")
-          }
-      }).then((res)=>res.json()).then((data)=>{
-          //console.log(data.user[0])
-          setData(data.user)
-          //console.log(state)
-         // console.log(data)
-      })
-      
-      
-      },[])
+const Profile = () => {
+    const [data, setData] = useState([]);
+    const { state, dispatch } = useContext(userContext)
+    const [image, setImage] = useState("")
+    useEffect(() => {
+
+        fetch('/mypost', {
+            headers: {
+                "authorization": "Bearer " + localStorage.getItem("jwt_key")
+            }
+        }).then((res) => res.json()).then((data) => {
+            //console.log(data.user[0])
+            setData(data.user)
+            //console.log(state)
+            // console.log(data)
+        })
 
 
-      useEffect(()=>{
-        if(image){
-         const data = new FormData()
-         data.append('file',image);
-         data.append('upload_preset',"instagram");
-         data.append("cloud_name","aryanraj");
-         fetch('https://api.cloudinary.com/v1_1/aryanraj/image/upload',{
-             method:"post",
-             body:data
-         })
-         .then(res=>res.json())
-         .then(data=>{
-     
-        
-            fetch('/updatepic',{
-                method:"put",
-                headers:{
-                    "Content-Type":"application/json",
-                    "authorization":"Bearer "+localStorage.getItem("jwt_key")
-                },
-                body:JSON.stringify({
-                    pic:data.url
-                })
-            }).then(res=>res.json())
-            .then(result=>{
-                console.log(result)
-                localStorage.setItem("user",JSON.stringify({...state,pic:result.pic}))
-                dispatch({type:"UPDATEPIC",payload:result.pic})
-                //window.location.reload()
+    }, [])
+
+
+    useEffect(() => {
+        if (image) {
+            const data = new FormData()
+            data.append('file', image);
+            data.append('upload_preset', "instagram");
+            data.append("cloud_name", "aryanraj");
+            fetch('https://api.cloudinary.com/v1_1/aryanraj/image/upload', {
+                method: "post",
+                body: data
             })
-        
-         })
-         .catch(err=>{
-             console.log(err)
-         })
+                .then(res => res.json())
+                .then(data => {
+
+
+                    fetch('/updatepic', {
+                        method: "put",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "authorization": "Bearer " + localStorage.getItem("jwt_key")
+                        },
+                        body: JSON.stringify({
+                            pic: data.url
+                        })
+                    }).then(res => res.json())
+                        .then(result => {
+                            console.log(result)
+                            localStorage.setItem("user", JSON.stringify({ ...state, pic: result.pic }))
+                            dispatch({ type: "UPDATEPIC", payload: result.pic })
+                            //window.location.reload()
+                        })
+
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
-     },[image])
-     const updatePhoto = (file)=>{
-         setImage(file)
-     }
-      console.log(state)
+    }, [image])
+    const updatePhoto = (file) => {
+        setImage(file)
+    }
+    console.log(state)
+
+
+
+
+
+    
+   const deletePost = (postid) => {
+    fetch(`/deletepost/${postid}`, {
+       method: "delete",
+       headers: {
+          "authorization": "Bearer " + localStorage.getItem("jwt_key")
+       }
+    }).then(res => res.json())
+       .then(result => {
+          console.log(result)
+          const newData = data.filter(item => {
+             return item._id !== result._id
+          })
+          setData(newData)
+       })
+ }
     return (
-       <div style={{maxWidth:"550px",margin:"0px auto"}}> 
-           <div style={{
-               display:'flex',
-               justifyContent:"space-around",
-               margin:"18px 0px",
-               borderBottom:"solid 1px grey"
-               }}>
-               <div>
-                 <img  style={{width:'100px',height:'100px',borderRadius:"80px"}}
-                 src={state?state.pic:"loading"}
-                 />
-               </div>
+        <div style={{ maxWidth: "550px", margin: "0px auto" }}>
+            <div style={{
+                display: 'flex',
+                justifyContent: "space-around",
+                margin: "18px 0px",
+                 borderBottom: "solid 1px grey"
+            }}>
+                <div>
+                    <img style={{ width: '100px', height: '100px', borderRadius: "80px" }}
+                        src={state ? state.pic : "loading"}
+                    />
+
+               <div className="file-field input-field" style={{ marginLeft: "33px" , marginTop: "0px"}}>
+                <div className="">
+                   
+                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i>
+                    <input type="file" onChange={(e) => updatePhoto(e.target.files[0])} />
+                </div>
                
-               <div>
-               <h6>{state?state.name:"loading"}</h6>
-               <strong>{state?state.email:"loading"}</strong>
-             
-               <div style={{
-               display:'flex',
-               justifyContent:"",
-               width:"100%",
-              
-              
-               }} >
-              
-            
-                {/* <h6>{state.followers.length} Followers</h6>
+                   
+                
+            </div>
+
+                </div>
+
+                <div>
+
+
+                    <div style={{display:"flex"}}>
+                        <div style={{border:"",paddingTop:"10px"}}><strong>{state ? state.name : "loading"}</strong>
+                           
+                        </div>
+                        &nbsp;
+                        <div style={{border:""}}><i class="material-icons" style={{ color: "blue", marginTop: "10px" }}>check_circle  </i>
+                            </div>
+                    </div>
+
+
+
+                    <strong>{state ? state.email : "loading"}</strong>
+
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: "",
+                        width: "100%",
+
+
+                    }} >
+
+
+                        {/* <h6>{state.followers.length} Followers</h6>
                 <h6>{state.following.length} Following</h6> */}
-                  
-                       <strong>{data.length} Posts &nbsp;</strong>
-                       <strong>{state?state.followers.length:"0"} followers&nbsp; </strong>
-                       <strong>{state?state.following.length:"0"} following </strong>
-                    
-                   {/* <h6>{data[0].postedBy.followers.length} Followers</h6>
+
+                        <strong>{data.length} Posts &nbsp;</strong>
+                        <strong>{state ? state.followers.length : "0"} Followers&nbsp; </strong>
+                        <strong>{state ? state.following.length : "0"} Following </strong>
+
+                        {/* <h6>{data[0].postedBy.followers.length} Followers</h6>
                    <h6>{data[0].postedBy.following.length} Following</h6>  */}
-               </div>
-               </div>
-           </div>
-           <div className="file-field input-field" style={{margin:"10px"}}>
-            <div className="btn #64b5f6 blue darken-1">
-                <span>Update pic</span>
-                <input type="file" onChange={(e)=>updatePhoto(e.target.files[0])} />
+                    </div>
+                </div>
             </div>
-            <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" />
+           
+            <div className="gallery">
+                {
+                    data.map((val) => {
+                        return (
+                        <>
+
+                        <div style={{border:"",width:"100%",height:"50%"}}>
+                        <span> <i className="material-icons" style={{ color: "red",fontSize:"25px" }} >favorite_border</i>
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        <i className="material-icons" style={{ color: "blue" ,fontSize:"25px"}} >forum</i>
+                        <i className="material-icons" style={{
+                           float: "right",
+                           color:"red"
+                           ,fontSize:"25px"
+                        }}
+                           onClick={() => deletePost(val._id)}
+                        >delete</i>
+                          </span> 
+                         
+                           
+
+                      <div style={{marginLeft:"8px"}}>
+                         <strong>{val.likes.length} </strong>
+                         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                         <strong>{val.comments.length}  </strong>
+                        </div>
+                       
+
+                            <img className="iteam"
+                                src={val.photo}
+
+                            />
+                           </div>
+
+                          </> 
+                        )
+                    })
+                }
+
+                      
             </div>
-            </div>
-       <div className="gallery">
-          {
-            data.map((val)=>{
-               return (
-                   <img className="iteam"
-                 src={val.photo}
-                 />
-               )
-             })   
-          }
-          
-       </div>
-      
-       </div>
+
+        </div>
     )
 }
 

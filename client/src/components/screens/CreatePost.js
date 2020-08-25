@@ -92,21 +92,26 @@ const CreatePost = () => {
                  onChange={(e)=>{setTitle(e.target.value)}}
                 
                 />
-                <input type="text" placeholder="body"
+                {/* <input type="text" placeholder="body"
                  value={body}
                  onChange={(e)=>{setBody(e.target.value)}}
-                />
+                /> */}
+
+             <textarea placeholder="body"
+                 value={body}
+                 onChange={(e)=>{setBody(e.target.value)}}
+                > 
+
+                </textarea>
            <div className="file-field input-field">
-           <div className="btn #64b5f6 blue darken-1">
-           <span>Upload</span>
+           <div className="">
+           <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i>
            <input type="file"
                  
            onChange={(e)=>{setImage(e.target.files[0])}}
            />
            </div>
-           <div className="file-path-wrapper">
-           <input className="file-path validate" type="text"/>
-          </div>
+          
           </div>
     <button className="btn waves-effect waves-light #64b5f6 blue darken-1"  onClick={postDetails}  >submit
     

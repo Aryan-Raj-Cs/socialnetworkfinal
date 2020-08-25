@@ -70,7 +70,7 @@ const Signin = () => {
 
         <div className="mycard">
             <div className="card auth-card">
-                <h2>Network</h2>
+                <h4><Link  className="brand-logo "><span style={{color:""}}>SnapTalk</span></Link></h4>
                 <input type="text" placeholder="email"
                  value={email}
                  onChange={(e)=>{setEmail(e.target.value)}}

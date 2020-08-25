@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 
 import Home from './components/screens/Home';
+import Trending from './components/screens/Trending';
 import Profile from './components/screens/Profile';
 import UserProfile from './components/screens/UserProfile';
 import Signin from './components/screens/Signin';
@@ -75,6 +76,9 @@ const Routing = () => {
 
       <Route path="/myfollowingpost">
         <SubscribedUserPosts />
+      </Route>
+      <Route path="/trending">
+        <Trending />
       </Route>
 
       <Route exact path="/reset">

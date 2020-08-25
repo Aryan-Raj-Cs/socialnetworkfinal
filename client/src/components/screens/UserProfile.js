@@ -106,7 +106,15 @@ import {useParams} from 'react-router-dom'
             </div>
             
             <div>
-            <h6>{userProfile.user.name}</h6>
+            {/* <h6>{userProfile.user.name}</h6> */}
+            <div style={{display:"flex"}}>
+                        <div style={{border:"",paddingTop:"10px"}}><strong>{userProfile.user.name}</strong>
+                           
+                        </div>
+                        &nbsp;
+                        <div style={{border:""}}><i class="material-icons" style={{ color: "blue", marginTop: "10px" }}>check_circle  </i>
+                            </div>
+                    </div>
             <strong>{userProfile.user.email}</strong> 
             <div style={{
             display:'flex',
@@ -144,10 +152,32 @@ import {useParams} from 'react-router-dom'
        {
          userProfile.posts.map((val)=>{
             return (
-                <img className="iteam"
-              src={val.photo}
-              />
-            )
+                <>
+
+                <div style={{border:"",width:"100%",height:"50%"}}>
+                <span> <i className="material-icons" style={{ color: "red",fontSize:"25px" }} >favorite_border</i>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                <i className="material-icons" style={{ color: "blue" ,fontSize:"25px"}} >forum</i>
+               
+                  </span> 
+                 
+                   
+
+              <div style={{marginLeft:"8px"}}>
+                 <strong>{val.likes.length} </strong>
+                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <strong>{val.comments.length}  </strong>
+                </div>
+               
+
+                    <img className="iteam"
+                        src={val.photo}
+
+                    />
+                   </div>
+
+                  </> 
+                )
           })   
        }
        

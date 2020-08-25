@@ -21,18 +21,26 @@ function Navbar() {
     <>  
     
   
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
-          <li style={{color:"red",padding:"0px",marginLeft:"15px",marginTop:"15px"}} >
-            <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+          <li className="banner" >
+            <Link to="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"15px"}}
               src={state.pic}
               />
+              </Link>
               </li>
-          <li> <Link to="profile"  ><strong style={{color:"blue"}} >{state.name}</strong></Link></li>
-        
-          <li  > <Link to="create"  >Upload</Link></li>
-          {/* <li  > <a href="create"  >Upload</a></li>, */}
-          <li key="4"><Link to="/myfollowingpost" >following</Link></li>
-          <li style={{color:"red",padding:"0px"}}  
+         
+          {/* <li> <i class="material-icons"  style={{color:"blue"}}>check_circle  </i></li> */}
+         
+          <li> <Link to="/"  ><i class="material-icons">home</i></Link></li>
+          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
+          <li> <Link to="create"  ><i class="material-icons">local_see</i></Link></li>
+          <li> <Link to="trending"  ><i class="material-icons"> album</i></Link></li>
+          <li> <Link to="myfollowingpost"  ><i class="material-icons">rss_feed</i></Link></li>
+          <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
+          dispatch({type:"CLEAR"})
+          history.push('/signin')
+          }} >settings_power</i></Link></li>
+          
+          {/* <li style={{color:"red",padding:"0px"}}  
            > 
           
           <button className="btn waves-effect  waves-light #e53935 red darken-1" onClick={()=>{localStorage.clear()
@@ -45,7 +53,7 @@ function Navbar() {
           </button>
           
           
-          </li>
+          </li> */}
          
          
   
@@ -72,16 +80,22 @@ function Navbar() {
     if(state){
   return [
     <>  
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",marginLeft:"30px"}}>search</i></li>
-          <li style={{color:"red",padding:"0px",marginLeft:"30px"}} >
-              <img  style={{width:'40px',height:'40px',borderRadius:"80px"}}
+         
+         <a href="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"15px"}}
               src={state.pic}
               />
-              </li>
-          <li  > <a href="profile"  ><strong style={{color:"blue"}} >{state.name}</strong></a></li>
-          <li  > <a href="create"  >Upload</a></li>
-          <li key="4"><a href="/myfollowingpost" >following</a></li>
-          <li style={{color:"red",padding:"0px"}} 
+              </a>
+        
+          <li> <a href="/"  ><i class="material-icons">home</i></a></li>
+          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",marginLeft:"30px"}}>search</i></li>
+          <li> <a href="create"  ><i class="material-icons">local_see</i></a></li>
+          <li> <a href="trending"  ><i class="material-icons"> album</i></a></li>
+          <li> <a href="myfollowingpost"  ><i class="material-icons">rss_feed</i></a></li>
+          <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
+          dispatch({type:"CLEAR"})
+          history.push('/signin')
+          }} >settings_power</i></Link></li>
+          {/* <li style={{color:"red",padding:"0px"}} 
            
            > 
           
@@ -97,7 +111,7 @@ function Navbar() {
           </button>
           
           
-          </li>
+          </li> */}
           
          
           </>
@@ -139,9 +153,9 @@ function Navbar() {
   return (
      <nav>
  
-    <div class="nav-wrapper white">
-    <Link to={state?"/":"/signin"} className="brand-logo "><span style={{color:"green"}}>Home</span></Link>
-   
+    <div class="nav-wrapper white over">
+    <Link to={state?"/":"/signin"} className="brand-logo "><span style={{color:""}}>SnapTalk</span></Link>
+             
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {/* <li><a href="sass.html">Sass</a></li>
