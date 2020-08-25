@@ -5,8 +5,10 @@ import {useParams} from 'react-router-dom'
    const [userProfile,setProfile]=useState(null);
    const {state,dispatch} = useContext(userContext)
    const {userid} = useParams();
-   const [showfollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
+   const user=JSON.parse(localStorage.getItem('user'))
+//    const [showfollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
    //const [showfollow,setShowFollow] = useState(true)
+   const [showfollow,setShowFollow] = useState(user?!user.following.includes(userid):true)
   
    console.log(userid)
    useEffect(()=>{
