@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { userContext } from '../../App'
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+    const history = useHistory();
     const [data, setData] = useState([]);
     const { state, dispatch } = useContext(userContext)
     const [image, setImage] = useState("")
@@ -99,11 +101,11 @@ const Profile = () => {
 
                <div className="file-field input-field" style={{ marginLeft: "33px" , marginTop: "0px"}}>
                 <div className="">
-                   
-                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i>
+               
+                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i> 
                     <input type="file" onChange={(e) => updatePhoto(e.target.files[0])} />
                 </div>
-               
+                <strong>Profile</strong> 
                    
                 
             </div>
@@ -125,7 +127,7 @@ const Profile = () => {
 
 
                     {/* <strong>{state ? state.email : "loading"}</strong> */}
-
+                   
                     <div style={{
                         display: 'flex',
                         justifyContent: "",
@@ -144,7 +146,25 @@ const Profile = () => {
 
                         {/* <h6>{data[0].postedBy.followers.length} Followers</h6>
                    <h6>{data[0].postedBy.following.length} Following</h6>  */}
+                   
+
                     </div>
+                    <p></p>
+                    <div className="file-field input-field" style={{ marginLeft: "70px" , marginTop: "0px"}}>
+                    
+                <div className="">
+              
+                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}} onClick={()=>{history.push('/create')}}>add_a_photo </i> 
+                   
+                </div>
+              
+                <strong>Photo</strong> 
+                
+               
+                   
+                
+            </div>
+                   
                 </div>
             </div>
            
