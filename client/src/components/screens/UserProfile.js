@@ -1,16 +1,29 @@
-import React,{useEffect,useState,useContext} from 'react'
+import React,{useEffect,useState,useContext,useRef} from 'react'
 import {userContext} from '../../App'
 import {useParams} from 'react-router-dom'
+import M from 'materialize-css'
+
  const UserProfile=()=>{
+    const  searchModal2 = useRef(null)
+   const [msg,setMsg]=useState("")
+   const [allmessage,setAllmessage]=useState([])
    const [userProfile,setProfile]=useState(null);
    const {state,dispatch} = useContext(userContext)
    const {userid} = useParams();
+   const [search,setSearch] = useState('')
+  const [msgDetails,setMsgDetails] = useState([])
    const user=JSON.parse(localStorage.getItem('user'))
 //    const [showfollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
    //const [showfollow,setShowFollow] = useState(true)
    const [showfollow,setShowFollow] = useState(user?!user.following.includes(userid):true)
-  
-   console.log(userid)
+   const clear = () => {
+    setMsg("");
+ }
+   useEffect(()=>{
+    
+    M.Modal.init(searchModal2.current)
+},[])
+  // console.log(userid)
    useEffect(()=>{
       fetch(`/user/${userid}`,{
           headers:{
@@ -19,6 +32,7 @@ import {useParams} from 'react-router-dom'
       }).then((res)=>res.json()).then((data)=>{
           console.log(data)
           setProfile(data)
+          userMessage(userid)
          // console.log(data)
       })
       
@@ -89,8 +103,106 @@ import {useParams} from 'react-router-dom'
         })
     }
 
+
+    const fetchUsers = (query)=>{
+        setSearch(query)
+        fetch('/search-users',{
+          method:"post",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            query
+          })
+        }).then(res=>res.json())
+        .then(results=>{
+         // setUserDetails(results.user)
+        })
+      }
+const userMessage=(userid)=>{
+  fetch('/usermessage', {
+    method: "post",
+    headers: {
+       "Content-Type": "application/json",
+       "authorization": "Bearer " + localStorage.getItem("jwt_key")
+    },
+    body: JSON.stringify({
+       userid,
+      
+    })
+ }).then(res => res.json())
+    .then(result => {
+       console.log(result)
+       setMsgDetails(result)
+       //setData(newData)
+    }).catch(err => {
+       console.log(err)
+    })
+
+
+}
+      const makeMsg = (body, userid) => {
+
+        if (msg.trim().length > 0) {
+           setMsg("");
+           console.log(body,userid)
+           fetch('/sendmessage', {
+              method: "put",
+              headers: {
+                 "Content-Type": "application/json",
+                 "authorization": "Bearer " + localStorage.getItem("jwt_key")
+              },
+              body: JSON.stringify({
+                 userid,
+                 body
+              })
+           }).then(res => res.json())
+              .then(result => {
+                 console.log(result)
+                 userMessage(userid)
+                 
+                 //setData(newData)
+              }).catch(err => {
+                 console.log(err)
+              })
+        }
+     }
+  
+
     return (
         <>
+ <div id="modal2" class="modal" ref={searchModal2} style={{color:"black"}}>
+          <div className="modal-content">
+         
+             <ul className="collection">
+                {msgDetails.map(item=>{
+                 return <a href={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                   M.Modal.getInstance(searchModal2.current).close()
+                   //setSearch('')
+                 }}>
+                   {item.postedBy._id==state._id
+                   
+                   ?<li   className="collection-item">{state.name+" -> "+item.body}</li>:
+                   <li className="collection-item">{item.body}</li> 
+                   }</a> 
+                   
+                   
+               })} 
+               
+              </ul>
+              <form onSubmit={(e) => {
+                           e.preventDefault()
+                           console.log(e.target[0])
+                           makeMsg(e.target[0].value, userid)
+                          }}>
+                           <input type="text" placeholder="Send message" onFocus={clear} onChange={(e) => { setMsg(e.target.value) }} value={msg} />
+               </form>
+                                   
+          </div>
+          <div className="modal-footer">
+            <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>
+          </div>
+        </div>
 
         {userProfile?   
         
@@ -102,14 +214,15 @@ import {useParams} from 'react-router-dom'
             borderBottom:"solid 1px grey"
             }}>
             <div>
-              <img  style={{width:'100px',height:'100px',borderRadius:"80px"}}
+              <img  style={{width:'100px',height:'100px',borderRadius:"80px",border:"2px solid #ff1a1a",padding:"4px"}}
               src={userProfile.user.pic}
               />
             </div>
             
             <div>
             {/* <h6>{userProfile.user.name}</h6> */}
-            <div style={{display:"flex"}}>
+            <div style={{display:"flex", marginLeft:"12px"
+}}>
                         <div style={{border:"",paddingTop:"10px"}}><strong>{userProfile.user.name}</strong>
                            
                         </div>
@@ -122,6 +235,7 @@ import {useParams} from 'react-router-dom'
             display:'flex',
             justifyContent:"space-around",
             width:"100%",
+            marginLeft:"12px"
            
            
             }} >
@@ -129,25 +243,38 @@ import {useParams} from 'react-router-dom'
                        <strong>{userProfile.user.followers?userProfile.user.followers.length:"0 "} followers&nbsp;</strong>
                        <strong>{userProfile.user.followers?userProfile.user.following.length:"0 "} following</strong>
             </div>
+            <div  style={{
+
+             display:"flex",
+            
+             marginLeft:"10px"
+
+            }}>
+
+          <div style={{
+
+                   
+                  }} >
             {showfollow?
-                   <button style={{
-                       margin:"10px"
-                   }} className="btn  blue darken-1 "
-                   style={{width:"100px",height:"35px",fontSize:"13px",color:"white"}}
-                    onClick={()=>followUser()}
-                    >
-                     Follow   
-                    </button>
-                    : 
-                    <button style={{
-                        margin:"10px"
-                    }} className="btn  blue darken-1 "
-                    style={{width:"100px",height:"35px",fontSize:"13px",color:"white"}}
+                  <input type="button" className="button"
+                  
+                  value={"Follow"}
+
+                  onClick={()=>followUser()}
+                  />
+                  : 
+                    <input type="button" className="button"
                      onClick={()=>unfollowUser()}
-                     >
-                      Unfollow   
-                     </button>
+                     value={"Unfollow"}
+                    />
+                     
                     }
+                    </div>
+          <div  style={{marginLeft:"5px"}}>           
+
+       <i  data-target="modal2" className="small material-icons modal-trigger" style={{color:"black",marginTop:"5px"}}>message</i>
+       </div>  
+       </div>
             </div>
         </div>
     <div className="gallery">
@@ -213,6 +340,7 @@ import {useParams} from 'react-router-dom'
        }
        
     </div>
+    
    
     </div>
         
@@ -220,7 +348,7 @@ import {useParams} from 'react-router-dom'
         
         :<h2> loading....!</h2>
          }
-      
+     
        </>
     )
 }

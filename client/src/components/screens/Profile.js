@@ -95,20 +95,24 @@ const Profile = () => {
                  borderBottom: "solid 1px grey"
             }}>
                 <div>
-                    <img style={{ width: '100px', height: '100px', borderRadius: "80px" }}
-                        src={state ? state.pic : "loading"}
-                    />
 
-               <div className="file-field input-field" style={{ marginLeft: "33px" , marginTop: "0px"}}>
+                <div className="file-field input-field" style={{   marginTop: "0px"}}>
                 <div className="">
                
-                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i> 
+                <img style={{ width: '100px', height: '100px', borderRadius: "80px",border:"2px solid #ff1a1a",padding:"4px" }}
+                        src={state ? state.pic : "loading"}
+                    />
                     <input type="file" onChange={(e) => updatePhoto(e.target.files[0])} />
                 </div>
-                <strong>Profile</strong> 
+                <div style={{ marginLeft: "33px" }}>
+                {/* <strong>Profile</strong>  */}
+                </div>
+                
                    
                 
             </div>
+                   
+
 
                 </div>
 
@@ -150,20 +154,17 @@ const Profile = () => {
 
                     </div>
                     <p></p>
-                    <div className="file-field input-field" style={{ marginLeft: "70px" , marginTop: "0px"}}>
+                    <div className="file-field input-field" style={{ marginLeft: "20px" , marginTop: "0px"}}>
                     
-                <div className="">
-              
-                    <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}} onClick={()=>{history.push('/create')}}>add_a_photo </i> 
-                   
-                </div>
-              
-                <strong>Photo</strong> 
                 
-               
-                   
+                
+               <input type="button" className="button"
+                  value="Edit Profile" 
+                  />
                 
             </div>
+
+            
                    
                 </div>
             </div>

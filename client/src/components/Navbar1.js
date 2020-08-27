@@ -22,7 +22,7 @@ function Navbar() {
     
   
           <li className="banner" >
-            <Link to="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"15px"}}
+            <Link to="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
               src={state.pic}
               />
               </Link>
@@ -30,12 +30,13 @@ function Navbar() {
          
           {/* <li> <i class="material-icons"  style={{color:"blue"}}>check_circle  </i></li> */}
          
-          <li><Link to="/"  ><i class="material-icons">home</i></Link></li>
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>
-          <li> <Link to="create"  ><i class="material-icons">local_see</i></Link></li>
-          <li> <Link to="trending"  ><i class="material-icons"> album</i></Link></li>
-          <li> <Link to="myfollowingpost"  ><i class="material-icons">rss_feed</i></Link></li>
-          <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
+          <li><Link to="/"  ><i class="large material-icons"style={{color:"black",fontSize:"30px"}}>home</i></Link></li>
+          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:"30px"}}>search</i></li>
+          <li> <Link to="create"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}>local_see</i></Link></li>
+          <li> <Link to="/"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}>message</i></Link></li>
+          <li> <Link to="trending"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}> album</i></Link></li>
+          <li> <Link to="myfollowingpost"  ><i class="material-icons"style={{color:"black",fontSize:"25px"}}>rss_feed</i></Link></li>
+          <li> <Link   ><i class="material-icons" style={{color:"black",fontSize:"25px"}} onClick={()=>{localStorage.clear()
           dispatch({type:"CLEAR"})
           history.push('/signin')
           }} >settings_power</i></Link></li>
@@ -89,6 +90,7 @@ function Navbar() {
           <li> <a href="/"  ><i class="material-icons">home</i>Home</a></li>
           <li key="1"><a ><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i>Search</a></li>
           <li> <a href="create"  ><i class="material-icons">local_see</i>Upload</a></li>
+          <li> <a href="/"  ><i class="material-icons"> message</i>Message</a></li>
           <li> <a href="trending"  ><i class="material-icons"> album</i>Trending</a></li>
           <li> <a href="myfollowingpost"  ><i class="material-icons">rss_feed</i>Following</a></li>
           <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
@@ -180,7 +182,21 @@ function Navbar() {
                  return <a href={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
                    M.Modal.getInstance(searchModal1.current).close()
                    setSearch('')
-                 }}><li className="collection-item">{item.name}</li></a> 
+                 }}><div style={{display:"flex",borderBottom:"1px solid grey"}} >
+
+                   <div>
+                   <img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
+                     src={item.pic}
+                    />
+                    </div>
+                    <div style={{marginLeft:"15px"}}>
+                   {item.name}
+                  
+                   </div>
+                   
+                   
+                   
+                   </div></a> 
                })}
                
               </ul>

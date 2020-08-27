@@ -33,10 +33,12 @@ mongoose.connection.on('error',()=>{
 
 
 require('./models/user')
+require('./models/message')
 app.use(express.json());
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
 app.use(require('./routes/user'));
+app.use(require('./routes/message'));
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static('client/build'))
