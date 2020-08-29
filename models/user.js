@@ -15,7 +15,16 @@ const ueserSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    
+    messages:[
+      {
+     messagedTo:{type:ObjectId,ref:"User"},
+     body:{type:String,
+        required:true},
+        createdAt: { type: Date, default: Date.now }
+      }
+
+    ],
+    messagedBy:[{type:ObjectId,ref:"User"}],
     resetToken:String,
     expireToken:Date,
     followers:[{type:ObjectId,ref:"User"}],

@@ -6,72 +6,84 @@ const requireLogin  = require('../middlewere/requireLogin')
 const User = mongoose.model("User")
 //const Msg = mongoose.model("Message")
 const Msg=require('../models/message');
+const { populate } = require('../models/message')
 
 
 
 router.put('/sendmessage',requireLogin,(req,res)=>{
-  
-    
-    
-    const msg= new Msg({
-       body:req.body.body,
-       postedBy:req.user._id,
-       postedTo:req.body.userid
-    })
-
-    msg.save().then((msg)=>{
-        //console.log(msg);
-        res.json({message:" msg successfully save to databases"});
- 
-    }).catch(error=>{
-     console.log(error);
-    })
-
-    }
-    )
-    // router.post('/usermessage',requireLogin,(req,res)=>{
-       
-    // Msg.find({postedTo:req.body.userid,postedBy:req.user._id},{
-               
-    //       }).then(result1=>{
-    //         //   res.json(result)
-    //         //   console.log(result1)
-
-              
-    //      Msg.find( {postedBy:req.body.userid,postedTo:req.user._id},{
-               
-    //     }).then(result2=>{
-    //        let result = result1.concat(result2)
-    //        //result.sort('createdAt')
-    //         console.log(result)
-    //         res.json({result})
-    //         //console.log(result)
-    //     }).catch(err=>{
-            
-    //         return res.status(422).json({error:err})
-    //     })
-    //       }).catch(err=>{
-              
-    //           return res.status(422).json({error:err})
-    //       })
-    
+    User.findByIdAndUpdate(req.user._id,{$push:{
         
+       messages:{
+       messagedTo:req.body.userid,
+       body:req.body.body
+       
+        },
+        
+       
+    
+    }}
+        ,{new:true},
+        (err,result)=>{
+         if(err){
+             return res.status(422).json({error:"can't send Msg"})
+         }
+       
+         User.findByIdAndUpdate(req.body.userid,{$addToSet:{
+        
+            messagedBy:req.user._id
+           
+             
+            
+         
+         }}
+             ,{new:true},
+             (err,result)=>{
+              if(err){
+                  return res.status(422).json({error:"can't send Msg"})
+              }
+            
+     
+     
+     
+              
+              res.json({result:"successfully send msg"})
+         })
 
-  
-    // }
-    //     )
 
+         
+        // res.json({result:"successfully send msg"})
+    })
+})
 
+// User.findByIdAndUpdate(req.body.userid,{$push:{
+//     messagedBy:req.body.userid
+// }}).then(result=>{
+//     console.log(result)
+// })
 
 
 
         router.post('/usermessage',requireLogin,(req,res)=>{
-       
-            Msg.find({postedTo:req.body.userid,postedBy:req.user._id},{
+        // console.log(req.body.userid)
+            User.find({_id:req.user._id},{
                        
-                  }).then(result=>{
-                      res.json(result)
-                      console.log(result)
+                  }).then(result1=>{
+
+                   // console.log(req.body.userid)
+               
+
+
+                    User.find({_id:req.body.userid},{
+                       
+                    }).then(result2=>{
+                       
+                    return res.json({messagedTo:result1,messagedBy:result2})
+                      
+                    }).catch(err=>{
+                        
+                        return res.status(422).json({error:err})
+                    })
+              
         
                     
                   }).catch(err=>{
@@ -84,42 +96,43 @@ router.put('/sendmessage',requireLogin,(req,res)=>{
           
             }
                 )
-    
-router.put('/unfollow',requireLogin,(req,res)=>{
-    User.findByIdAndUpdate(req.body.unfollowId,{
-        $pull:{followers:req.user._id}
-    },{
-        new:true
-    },(err,result)=>{
-        if(err){
-            return res.status(422).json({error:err})
-        }
-      User.findByIdAndUpdate(req.user._id,{
-          $pull:{following:req.body.unfollowId}
-          
-      },{new:true}).select("-password").then(result=>{
-          res.json(result)
-      }).catch(err=>{
-          return res.status(422).json({error:err})
-      })
 
-    }
-    )
-})
+                 //  res.json(result)
+                // console.log(result)
+                router.put('/userallmessage',requireLogin,(req,res)=>{
+                    User.findById(req.user._id,{
+                     
+                    },{
+                        new:true
+                    },(err,result)=>{
+                        if(err){
+                            return res.status(422).json({error:err})
+                        }
+                         
 
+                       
+                        // console.log(finalresult)
+                        // console.log(result.messagedBy)
+                      // finalresult= [...finalresult , ...result.messagedBy]
+                       // console.log( finalresult)
+                    //    let st=new Set(finalresult)
+                    //      console.log(...st)
 
+                         res.json({result})
+                             
+                    }
+                    )
+                })
 
-// router.post('/search-users',(req,res)=>{
-//     let userPattern = new RegExp("^"+req.body.query)
-//     User.find({email:{$regex:userPattern}})
-//     .select("_id email")
-//     .then(user=>{
-//         res.json({user})
-//     }).catch(err=>{
-//         console.log(err)
-//     })
-
-// })
+                router.put('/allusers',requireLogin,(req,res)=>{
+                  
+                    User.find({_id:{$in:req.body.users}}) .then(users=>{
+                        res.json({users})
+                    }).catch(err=>{
+                        console.log(err)
+                    })
+                    
+                })
 
 
 router.post('/search-users',(req,res)=>{

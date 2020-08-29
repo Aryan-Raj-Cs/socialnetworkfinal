@@ -12,6 +12,15 @@ rout.get('/allpost',requireLogin,(req,res)=>{
     })
 })
 
+rout.get('/onepost/:postid',requireLogin,(req,res)=>{
+    Post.findOne({_id:req.params.postid}).populate("postedBy","_id name pic").populate("comments.postedBy","_id name").
+    then((result)=>{
+        console.log(result,"hello")
+        res.json({posts:result})
+    }).catch(error=>{
+        res.json({"error":"invalid"})
+    })
+})
 
 
 rout.get('/mypost',requireLogin,(req,res)=>{

@@ -11,7 +11,7 @@ import M from 'materialize-css'
    const {state,dispatch} = useContext(userContext)
    const {userid} = useParams();
    const [search,setSearch] = useState('')
-   const [msgDetails,setMsgDetails] = useState([])
+  const [msgDetails,setMsgDetails] = useState([])
    const user=JSON.parse(localStorage.getItem('user'))
 //    const [showfollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
    //const [showfollow,setShowFollow] = useState(true)
@@ -134,7 +134,7 @@ const userMessage=(userid)=>{
     .then(result => {
       let message=[];
       console.log(result.messagedBy[0].messages,result.messagedTo[0].messages)
-     if(result.messagedBy[0].messages.length>0 || result.messagedTo[0].messages.length>0){
+     if(result.messagedBy[0].messages.length>0 && result.messagedTo[0].messages.length>0){
       result.messagedBy[0].messages= result.messagedBy[0].messages.filter(item=>{
        return item.messagedTo==user._id
       })
@@ -221,9 +221,9 @@ const userMessage=(userid)=>{
                    
                    
               
-               return<p> <div> {item.messagedTo!=userid? <p> <div>{userProfile.user.name+" -> "+item.body}</div></p>:<p><div style={{float:"right"}}>{state.name+" ->"+item.body}</div></p> }
+               return <div> {item.messagedTo!=userid?  <div>{userProfile.user.name+" -> "+item.body}</div>:<div>{state.name+" ->"+item.body}</div> }
 
-               </div></p>
+               </div>
                   
                    
                    
@@ -356,21 +356,23 @@ const userMessage=(userid)=>{
                     <div  className="iteam1">
          
               
-          
+            <span> <i className="material-icons" style={{ color: "red",fontSize:"15px" }} >favorite_border</i>
+                &nbsp; <strong>{val.likes.length} </strong> &nbsp;
+                <i className="material-icons" style={{ color: "" ,fontSize:"13px"}} >forum</i>
+                &nbsp;<strong>{val.comments.length}  </strong>
+                
+                  </span> 
                 
                   {/* <div style={{marginLeft:"5px"}}> */}
                 
                  
                
                 {/* </div> */}
-                <a href={"/userpost/"+val._id}>
                     <img className="iteam"
                         src={val.photo}
 
                     />
-                     </a>
                     </div>
-                   
                 
                   </> 
                 )

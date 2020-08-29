@@ -180,28 +180,19 @@ const Profile = () => {
                             <div  className="iteam1">
                  
                       
-                    <span> <i className="material-icons" style={{ color: "red",fontSize:"15px" }} >favorite_border</i>
-                        &nbsp; <strong>{val.likes.length} </strong> &nbsp;
-                        <i className="material-icons" style={{ color: "" ,fontSize:"13px"}} >forum</i>
-                        &nbsp;<strong>{val.comments.length}  </strong>
-                        <i className="material-icons" style={{
-                           float: "right",
-                           color:""
-                           ,fontSize:"15px"
-                        }}
-                           onClick={() => deletePost(val._id)}
-                        >delete</i>
-                          </span> 
+                   
                         
                           {/* <div style={{marginLeft:"5px"}}> */}
                         
                          
                        
                         {/* </div> */}
+                         <a href={"/post/"+val._id}>
                             <img className="iteam"
                                 src={val.photo}
 
                             />
+                            </a>
                             </div>
                         
                           </> 

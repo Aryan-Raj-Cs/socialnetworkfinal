@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import Home from './components/screens/Home';
 import Trending from './components/screens/Trending';
 import Profile from './components/screens/Profile';
+import Post from './components/screens/Post';
+import Userpost from './components/screens/Userpost';
 import UserProfile from './components/screens/UserProfile';
 import Signin from './components/screens/Signin';
 import SignUp from './components/screens/SignUp'
@@ -15,6 +17,7 @@ import CreatePost from './components/screens/CreatePost';
 import Reset from './components/screens/Reset';
 import SubscribedUserPosts from './components/screens/SubscribesUserPosts'
 import NewPassword from './components/screens/Newpassword'
+import Message from './components/screens/Message'
 import M from 'materialize-css';
 
 import { reducer, initialState } from './reducers/UserReducers'
@@ -74,11 +77,23 @@ const Routing = () => {
         <UserProfile />
       </Route>
 
+      <Route path="/post/:postid">
+        <Post />
+      </Route>
+      
+      <Route path="/userpost/:postid" >
+        <Userpost />
+      </Route>
+
       <Route path="/myfollowingpost">
         <SubscribedUserPosts />
       </Route>
       <Route path="/trending">
         <Trending />
+      </Route>
+
+      <Route path="/message">
+        <Message />
       </Route>
 
       <Route exact path="/reset">
