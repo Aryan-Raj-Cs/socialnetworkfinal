@@ -85,7 +85,7 @@ function Navbar() {
     
   
           <li className="banner" >
-            <Link to="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
+            <Link href="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
               src={state.pic}
               />
               </Link>
@@ -96,7 +96,7 @@ function Navbar() {
           <li><Link to="/"  ><i class="large material-icons"style={{color:"black",fontSize:"30px"}}>home</i></Link></li>
           <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:"30px"}}>search</i></li>
           <li> <Link to="create"  ><i  class="large material-icons"style={{color:"black",fontSize:"25px"}}>local_see</i></Link></li>
-          <li key="1"><i onClick={()=>{allmessage()}} data-target="modal4" className="large material-icons modal-trigger" style={{color:"black",fontSize:"30px"}}>message</i></li>
+          <li key="1"><i onClick={()=>{allmessage()}} data-target="modal4" className="large material-icons modal-trigger" style={{color:"black",fontSize:"25px"}}>message</i></li>
           <li> <Link to="trending"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}> album</i></Link></li>
           <li> <Link to="myfollowingpost"  ><i class="material-icons"style={{color:"black",fontSize:"25px"}}>rss_feed</i></Link></li>
           <li> <Link   ><i class="material-icons" style={{color:"black",fontSize:"25px"}} onClick={()=>{localStorage.clear()

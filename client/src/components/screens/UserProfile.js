@@ -221,9 +221,9 @@ const userMessage=(userid)=>{
                    
                    
               
-               return<p> <div> {item.messagedTo!=userid? <p> <div>{userProfile.user.name+" -> "+item.body}</div></p>:<p><div style={{float:"right"}}>{state.name+" ->"+item.body}</div></p> }
+               return <div > {item.messagedTo!=userid? <div className="chat1" ><strong>{userProfile.user.name+" -: "+item.body}</strong></div>:<div className="chat2"><strong>{state.name+" -:"+item.body}</strong></div> }
 
-               </div></p>
+               </div>
                   
                    
                    

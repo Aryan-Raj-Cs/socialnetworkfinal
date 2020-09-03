@@ -216,7 +216,18 @@ const Home = () => {
                            item.comments.map((record,index) => {
                               if(index<3)
                                     return (
-                                       <h6 key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</h6>
+                                       <>
+                                    <div  style={{display:"flex"}}>
+                                       <div>
+                                    <img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"1px solid grey",padding:""}}
+                                      src={record.postedBy.pic}
+                                      />
+                                      </div>
+                                      <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                                    <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                                    </div>
+                                    </div>
+                                </>
                                     )
                            })
                         }
@@ -234,7 +245,18 @@ const Home = () => {
                               else {
                                 if(index>=3)
                                  return (
-                                    <h6 key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</h6>
+                                    <>
+                                    <div  style={{display:"flex"}}>
+                                       <div>
+                                    <img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"1px solid grey",padding:""}}
+                                      src={record.postedBy.pic}
+                                      />
+                                      </div>
+                                      <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                                    <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                                    </div>
+                                    </div>
+                                </>
                                  )
                               }
                            })
