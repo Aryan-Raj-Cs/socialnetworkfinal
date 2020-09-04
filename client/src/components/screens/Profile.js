@@ -91,6 +91,7 @@ const Profile = () => {
  }
     return (
         <div style={{ maxWidth: "550px", margin: "0px auto" }}>
+           
             <div style={{
                 display: 'flex',
                 justifyContent: "space-around",
@@ -171,7 +172,7 @@ const Profile = () => {
                    
                 </div>
             </div>
-           {data?
+           
             <div className="gallery">
                 {
                     data.map((val) => {
@@ -199,13 +200,7 @@ const Profile = () => {
                 }
 
                       
-            </div>:
-             <div >
-         
-             <img className="loading" src={tenor} />
-             
-             </div>
-}
+            </div>
 
         </div>
     )
