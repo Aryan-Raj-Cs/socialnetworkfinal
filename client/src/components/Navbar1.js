@@ -221,7 +221,7 @@ function Navbar() {
      <nav>
  
     <div class="nav-wrapper white over">
-    <Link to={state?"/":"/signin"} className="brand-logo "><span style={{color:""}}>SnapTalk</span></Link>
+    <Link to={state?"/":"/signin"} className="brand-logo "><span style={{color:""}}>Snapytalk</span></Link>
              
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">

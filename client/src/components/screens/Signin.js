@@ -70,7 +70,7 @@ const Signin = () => {
 
         <div className="mycard">
             <div className="card auth-card">
-                <h4><Link  className="brand-logo "><span style={{color:""}}>SnapTalk</span></Link></h4>
+                <h4><Link  className="brand-logo "><span style={{color:""}}>Snapytalk</span></Link></h4>
                 <input type="text" placeholder="email"
                  value={email}
                  onChange={(e)=>{setEmail(e.target.value)}}
@@ -82,8 +82,8 @@ const Signin = () => {
                 <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={postData} >Signin
     
                  </button>
-                 <h6 ><Link to='/signup' ><strong style={{color:"blue"}}>Don't Have Account ?</strong></Link> </h6>
-                 <h6 ><Link to='/reset' ><strong style={{color:"blue"}}>ForgetPassword  ?</strong></Link> </h6>
+                 <h6 ><Link to='/signup' ><span style={{color:"blue"}}>Don't have account ?</span></Link> </h6>
+                 <h6 ><Link to='/reset' ><span style={{color:"blue"}}>Forget password  ?</span></Link> </h6>
             </div>
         </div>
     )

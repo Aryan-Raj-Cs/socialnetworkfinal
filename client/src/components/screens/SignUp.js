@@ -76,7 +76,7 @@ const postData = ()=>{
 
         <div className="mycard">
             <div className="card auth-card">
-            <h4><Link  className="brand-logo "><span style={{color:""}}>SnapTalk</span></Link></h4>
+            <h4><Link  className="brand-logo "><span style={{color:""}}>Snapytalk</span></Link></h4>
                 <input type="text" placeholder="name"
                 value={name}
                  onChange={(e)=>{setName(e.target.value)}}
@@ -90,22 +90,22 @@ const postData = ()=>{
                  value={password}
                  onChange={(e)=>{setPassword(e.target.value)}}
                 />
-                  <div className="file-field input-field">
-           <div className="btn #64b5f6 blue darken-1">
-           <span>Upload Pic</span>
+             
+         
+           <div className="file-field input-field">
+           <div className="">
+           <i class="material-icons" style={{ color: "blue" ,fontSize:"35px"}}>local_see  </i>
            <input type="file"
                  
            onChange={(e)=>{setImage(e.target.files[0])}}
            />
            </div>
-           <div className="file-path-wrapper">
-           <input className="file-path validate" type="text"/>
-          </div>
+          
           </div>
                 <button className="btn waves-effect waves-light #64b5f6 blue lighten-2" onClick={postData} >SignUp
     
                  </button>
-                  <p><Link to='/signin'><strong style={{color:"blue"}}>Already Have Account ?</strong></Link> </p>
+                  <p><Link to='/signin'><span style={{color:"blue"}}>Already have account ?</span></Link> </p>
                  
             </div>
         </div>

@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { userContext } from '../../App'
 import { useHistory } from 'react-router-dom';
+import tenor from './tenor.gif';
+import loading from './loading2.gif';
+import load from './load.gif';
 
 const Profile = () => {
     const history = useHistory();
@@ -168,7 +171,7 @@ const Profile = () => {
                    
                 </div>
             </div>
-           
+           {data?
             <div className="gallery">
                 {
                     data.map((val) => {
@@ -181,12 +184,7 @@ const Profile = () => {
                  
                       
                    
-                        
-                          {/* <div style={{marginLeft:"5px"}}> */}
-                        
-                         
-                       
-                        {/* </div> */}
+        
                          <a href={"/post/"+val._id}>
                             <img className="iteam"
                                 src={val.photo}
@@ -201,7 +199,13 @@ const Profile = () => {
                 }
 
                       
-            </div>
+            </div>:
+             <div >
+         
+             <img className="loading" src={tenor} />
+             
+             </div>
+}
 
         </div>
     )
