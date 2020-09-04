@@ -80,7 +80,7 @@ rout.put('/unlike',requireLogin,(req,res)=>{
         $pull:{likes:req.user._id}
     },{
         new:true
-    }).populate("comments.postedBy","_id name")
+    }).populate("comments.postedBy","_id name pic")
     .populate("postedBy","_id name pic")
     .exec((err,result)=>{
         if(err){
@@ -137,7 +137,7 @@ rout.get('/getsubpost',requireLogin,(req,res)=>{
     // if postedBy in following
     Post.find({postedBy:{$in:req.user.following}})
     .populate("postedBy","_id name pic")
-    .populate("comments.postedBy","_id name")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(posts=>{
         res.json({posts})

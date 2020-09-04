@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { userContext } from '../../App';
+import tenor from './tenor.gif';
+import loading from './loading2.gif';
+import load from './load.gif';
 const Home = () => {
 
 
@@ -135,148 +138,170 @@ const Home = () => {
       }
    }
 
-   return (
-      <div className="home">
+ 
+return (
 
+    <>
+   <div className="home">
+     
 
-         {
+      {
 
-            data.map(item => {
+         data.map(item => {
 
-               return (
+            return (
+               
+            
 
-
-                  <div className="card home-card" key={item._id}>
-                     <div style={{ display: "flex", }} >
-                        <div style={{ border: "",margin:"5px" }}> 
-                           <img style={{ width: '40px', height: '40px', borderRadius: "80px" }}
-                              src={item.postedBy.pic}
-                           />
-                        </div>
-                        <div style={{ border: "",marginTop:"15px" }}>
-                           <span style={{ padding: "5px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}><strong style={{ color: "" }}>{item.postedBy.name}</strong>&nbsp;</Link> 
-                           {/* {item.postedBy._id == state._id
-                             
-                             && <i className="material-icons" style={{
-                                 float: "right"
-                              }}
-                                 onClick={() => deletePost(item._id)}
-                              >delete</i>} */}
-
-                              {false
-                             
-                                 || <i className="material-icons" style={{
-                                     float: "right",
-                                     color:"blue"
-                                  }}
-                                    
-                                  >check_circle</i>
-                              
-
-                           }</span>
-
-                        </div>
-                     </div>
-                     <div className="card-image">
-                        <img src={item.photo}
-
+               <div className="card home-card" key={item._id}>
+                  <div style={{ display: "flex", }} >
+                     <div style={{ border: "",margin:"5px" }}> 
+                        <img style={{ width: '40px', height: '40px', borderRadius: "80px" }}
+                           src={item.postedBy.pic}
                         />
-
-
                      </div>
+                     <div style={{ border: "",marginTop:"15px" }}>
+                        <span style={{ padding: "5px" }}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}><strong style={{ color: "" }}>{item.postedBy.name}</strong>&nbsp;</Link> 
+                        {/* {item.postedBy._id == state._id
+                          
+                          && <i className="material-icons" style={{
+                              float: "right"
+                           }}
+                              onClick={() => deletePost(item._id)}
+                           >delete</i>} */}
 
-                     <div className="card-content">
-                       
-                        {item.likes.includes(state._id)
-                           ?
-                           <i className="material-icons" style={{ color: "red",fontSize:"35px" }}
-                              onClick={() => { unlikePost(item._id) }}
-                           >favorite</i>
-                           :
-                           <i className="material-icons" style={{ color: "red",fontSize:"35px" }}
-                              onClick={() => { likePost(item._id) }}
-                           >favorite_border</i>
-                        }
-                        <h6><strong>{item.likes.length} likes</strong></h6>
+                           {false
+                          
+                              || <i className="material-icons" style={{
+                                  float: "right",
+                                  color:"blue"
+                               }}
+                                 
+                               >check_circle</i>
+                           
 
-                        <p><strong>{item.title}</strong></p>
-                        <p><strong>{item.body}</strong></p>
-                        {allcomments?<p style={{ cursor: "pointer", color: "blue" }} onClick={allcomment}><strong> Hide  comments {/*item.comments.length*/}</strong></p>:
-                        <p style={{ cursor: "pointer", color: "blue" }} onClick={allcomment}><strong> Show all comments {item.comments.length}</strong></p>
-                        }
-                        
-                        <form onSubmit={(e) => {
-                           e.preventDefault()
-                           makeComment(e.target[0].value, item._id)
-                        }}>
-                           <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e) => { setComment(e.target.value) }} value={comnt} />
-                        </form>
-                                               
-                        {
-                           item.comments.map((record,index) => {
-                              if(index<3)
-                                    return (
-                                       <>
-                                    <div  style={{display:"flex"}}>
-                                       <div>
-                                    <img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"1px solid grey",padding:""}}
-                                      src={record.postedBy.pic}
-                                      />
-                                      </div>
-                                      <div style={{marginTop:"22px",marginLeft:"10px"}}>
-                                    <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
-                                    </div>
-                                    </div>
-                                </>
-                                    )
-                           })
-                        }
-
-
-                        {
-                           item.comments.map((record, index) => {
-                              if (allcomments == false) {
-                                 //   if(index<5)
-                                 //    return (
-                                 //       <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
-                                 //    )
-                              }
-
-                              else {
-                                if(index>=3)
-                                 return (
-                                    <>
-                                    <div  style={{display:"flex"}}>
-                                       <div>
-                                    <img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"1px solid grey",padding:""}}
-                                      src={record.postedBy.pic}
-                                      />
-                                      </div>
-                                      <div style={{marginTop:"22px",marginLeft:"10px"}}>
-                                    <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
-                                    </div>
-                                    </div>
-                                </>
-                                 )
-                              }
-                           })
-                        }
-
+                        }</span>
 
                      </div>
                   </div>
+                  <div className="card-image"  >
+                     <img src={item.photo} 
 
-               )
-
-            })
-         }
-
+                     />
 
 
+                  </div>
+               
+                  <div className="card-content">
+                    
+                     {item.likes.includes(state._id)
+                        ?
+                        <i className="material-icons" style={{ color: "red",fontSize:"35px" }}
+                           onClick={() => { unlikePost(item._id) }}
+                        >favorite</i>
+                        
+                        :
+                        <i className="material-icons" style={{ color: "red",fontSize:"35px" }}
+                           onClick={() => { likePost(item._id) }}
+                        >favorite_border</i>
+                     }
+                     
+                     <h6><strong>{item.likes.length} likes</strong></h6>
+
+                     <p><strong>{item.title}</strong></p>
+                     <p><strong>{item.body}</strong></p>
+                     {allcomments?<p style={{ cursor: "pointer", color: "blue" }} onClick={allcomment}><strong> Hide  comments {/*item.comments.length*/}</strong></p>:
+                     <p style={{ cursor: "pointer", color: "blue" }} onClick={allcomment}><strong> Show all comments {item.comments.length}</strong></p>
+                     }
+                     
+                     <form onSubmit={(e) => {
+                        e.preventDefault()
+                        makeComment(e.target[0].value, item._id)
+                     }}>
+                        <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e) => { setComment(e.target.value) }} value={comnt} />
+                     </form>
+                                            
+                     {
+                        item.comments.map((record,index) => {
+                           if(index>(item.comments.length-4) && allcomments==false)
+                                 return (
+                                    <>
+                                 <div  style={{display:"flex"}}>
+                                    <div>
+                                 <img style={{color:"red",padding:"0px"}} style={{width:'30px',height:'30px',borderRadius:"80px",marginTop:"18px",border:"1px solid grey",padding:""}}
+                                   src={record.postedBy.pic}
+                                   />
+                                   </div>
+                                   <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                                 <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                                 </div>
+                                 </div>
+                             </>
+                                 )
+                        })
+                     }
 
 
-      </div>
-   )
+                     {
+                        item.comments.map((record, index) => {
+                           if (allcomments == false) {
+                              //   if(index<5)
+                              //    return (
+                              //       <h6 key={record._id}><span style={{ fontWeight: "500" ,color:"blue"}}>{"@"+record.postedBy.name}</span> {record.text}</h6>
+                              //    )
+                           }
+
+                           else {
+                             if(true)
+                              return (
+                                 <>
+                                 <div  style={{display:"flex"}}>
+                                    <div>
+                                 <img style={{color:"red",padding:"0px"}} style={{width:'30px',height:'30px',borderRadius:"80px",marginTop:"18px",border:"1px solid grey",padding:""}}
+                                   src={record.postedBy.pic}
+                                   />
+                                   </div>
+                                   <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                                 <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                                 </div>
+                                 </div>
+                             </>
+                              )
+                           }
+                        })
+                     }
+
+
+                  </div>:
+
+                
+               </div>
+
+             
+
+            )
+
+         })
+      }
+
+
+
+
+
+   </div>
+
+
+  
+   <div >
+         
+         <img className="loading" src={tenor} />
+         
+         </div>
+
+</>
+)
+  
+   
 }
 
 

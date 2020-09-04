@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { userContext } from '../../App';
+import tenor from './tenor.gif';
 const Home = () => {
 
 
@@ -135,6 +136,7 @@ const Home = () => {
    }
 
    return (
+      <>
       <div className="home">
 
 
@@ -207,15 +209,27 @@ const Home = () => {
                         }}>
                            <input type="text" placeholder="add a comment" onFocus={clear} onChange={(e) => { setComment(e.target.value) }} value={comnt} />
                         </form>
-                        {/*                        
+                                               
                         {
                            item.comments.map((record,index) => {
                              
+                              if(index>(item.comments.length-4) && allcomments==false)
                               return (
-                                 <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name}</span> {record.text}</h6>
+                                 <>
+                              <div  style={{display:"flex"}}>
+                                 <div>
+                              <img style={{color:"red",padding:"0px"}} style={{width:'30px',height:'30px',borderRadius:"80px",marginTop:"18px",border:"1px solid grey",padding:""}}
+                                src={record.postedBy.pic}
+                                />
+                                </div>
+                                <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                              <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                              </div>
+                              </div>
+                          </>
                               )
                            })
-                        } */}
+                        }
 
 
                         {
@@ -229,8 +243,20 @@ const Home = () => {
 
                               else {
 
+                                 if(true)
                                  return (
-                                    <h6 key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</h6>
+                                    <>
+                                    <div  style={{display:"flex"}}>
+                                       <div>
+                                    <img style={{color:"red",padding:"0px"}} style={{width:'30px',height:'30px',borderRadius:"80px",marginTop:"18px",border:"1px solid grey",padding:""}}
+                                      src={record.postedBy.pic}
+                                      />
+                                      </div>
+                                      <div style={{marginTop:"22px",marginLeft:"10px"}}>
+                                    <span key={record._id}><span style={{ fontWeight: "500", color: "blue" }}><Link to={record.postedBy._id !== state._id ? "/profile/" + record.postedBy._id : "/profile"}><strong style={{ color: "" }}>{record.postedBy.name}</strong></Link></span> {record.text}</span>
+                                    </div>
+                                    </div>
+                                </>
                                  )
                               }
                            })
@@ -250,6 +276,13 @@ const Home = () => {
 
 
       </div>
+           
+   <div >
+         
+   <img className="loading" src={tenor} />
+   
+   </div>
+   </>
    )
 }
 

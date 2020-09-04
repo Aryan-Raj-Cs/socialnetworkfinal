@@ -8,6 +8,7 @@ function Navbar() {
   const  searchModal = useRef(null)
   const  searchModal1 = useRef(null)
   const  searchModal4 = useRef(null)
+  const  searchModal5 = useRef(null)
   const [msg,setMsg]=useState([])
   const [msgusers,setMsgusers]=useState([])
   const [search,setSearch] = useState('')
@@ -16,6 +17,7 @@ function Navbar() {
        M.Sidenav.init(searchModal.current)
        M.Modal.init(searchModal1.current)
        M.Modal.init(searchModal4.current)
+       M.Tooltip.init(searchModal5.current)
    },[])
   const {state,dispatch}=useContext(userContext);
   const history=useHistory()
@@ -85,7 +87,7 @@ function Navbar() {
     
   
           <li className="banner" >
-            <Link href="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
+            <Link to="profile" ><img style={{color:"red",padding:"0px"}} style={{width:'40px',height:'40px',borderRadius:"80px",marginTop:"12px",border:"2px solid #ff1a1a",padding:"2px"}}
               src={state.pic}
               />
               </Link>
@@ -93,12 +95,12 @@ function Navbar() {
          
           {/* <li> <i class="material-icons"  style={{color:"blue"}}>check_circle  </i></li> */}
          
-          <li><Link to="/"  ><i class="large material-icons"style={{color:"black",fontSize:"30px"}}>home</i></Link></li>
-          <li key="1"><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:"30px"}}>search</i></li>
+          <li><Link to="/"  ><i class="large material-icons  tooltipped" dataPosition="top"  ref={searchModal5} dataTooltip="I am a tooltip" style={{color:"black",fontSize:"30px"}}>home</i></Link></li>
+          <li key="1"><Link><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black",fontSize:"30px"}}>search</i></Link></li>
           <li> <Link to="create"  ><i  class="large material-icons"style={{color:"black",fontSize:"25px"}}>local_see</i></Link></li>
-          <li key="1"><i onClick={()=>{allmessage()}} data-target="modal4" className="large material-icons modal-trigger" style={{color:"black",fontSize:"25px"}}>message</i></li>
-          <li> <Link to="trending"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}> album</i></Link></li>
-          <li> <Link to="myfollowingpost"  ><i class="material-icons"style={{color:"black",fontSize:"25px"}}>rss_feed</i></Link></li>
+          <li key="1"><Link><i onClick={()=>{allmessage()}} data-target="modal4" className="large material-icons modal-trigger" style={{color:"black",fontSize:"25px"}}>message</i></Link></li>
+          <li> <Link to="trending"  ><i class="large material-icons"style={{color:"black",fontSize:"25px"}}>whatshot</i></Link></li>
+          <li> <Link to="myfollowingpost"  ><i class="material-icons"style={{color:"black",fontSize:"25px"}}>subscriptions</i></Link></li>
           <li> <Link   ><i class="material-icons" style={{color:"black",fontSize:"25px"}} onClick={()=>{localStorage.clear()
           dispatch({type:"CLEAR"})
           history.push('/signin')
@@ -154,8 +156,8 @@ function Navbar() {
           <li key="1"><a ><i  data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i>Search</a></li>
           <li> <a href="create"  ><i class="material-icons">local_see</i>Upload</a></li>
           <li key="1"><a data-target="modal4" className=" modal-trigger"><i onClick={()=>{allmessage()}} data-target="modal4" className="large material-icons modal-trigger" style={{color:"black"}}>message</i>Messages</a></li>
-          <li> <a href="trending"  ><i class="material-icons"> album</i>Trending</a></li>
-          <li> <a href="myfollowingpost"  ><i class="material-icons">rss_feed</i>Following</a></li>
+          <li> <a href="trending"  ><i class="material-icons"> whatshot</i>Trending</a></li>
+          <li> <a href="myfollowingpost"  ><i class="material-icons">subscriptions</i>Following</a></li>
           <li> <Link   ><i class="material-icons"  onClick={()=>{localStorage.clear()
           dispatch({type:"CLEAR"})
           history.push('/signin')
@@ -279,9 +281,11 @@ function Navbar() {
             value={search}
             // onChange={(e)=>fetchUsers(e.target.value)}
             /> */}
+
+      
              <ul className="collection">
                {msgusers.map(item=>{
-                 return <a href={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                 return <a href={item._id !== state._id ? "/allmessage/"+item._id:'/allmessage/'+item._id} onClick={()=>{
                    M.Modal.getInstance(searchModal1.current).close()
                    setSearch('')
                  }}><div style={{display:"flex",borderBottom:"1px solid grey"}} >
@@ -305,6 +309,8 @@ function Navbar() {
                })}
                
               </ul>
+  
+             
           </div>
           <div className="modal-footer">
             <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>

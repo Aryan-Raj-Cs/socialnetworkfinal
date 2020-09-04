@@ -11,6 +11,7 @@ import Profile from './components/screens/Profile';
 import Post from './components/screens/Post';
 import Userpost from './components/screens/Userpost';
 import UserProfile from './components/screens/UserProfile';
+import Allmessage from './components/screens/Allmessage';
 import Signin from './components/screens/Signin';
 import SignUp from './components/screens/SignUp'
 import CreatePost from './components/screens/CreatePost';
@@ -75,6 +76,10 @@ const Routing = () => {
        
       <Route path="/profile/:userid" >
         <UserProfile />
+      </Route>
+
+      <Route path="/allmessage/:userid" >
+        <Allmessage />
       </Route>
 
       <Route path="/post/:postid">
